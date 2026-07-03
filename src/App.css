@@ -462,6 +462,12 @@
   .mobile-toggle {
     display: block;
   }
+  .brand {
+    font-size: 1.1rem;
+    white-space: normal;
+    max-width: 80%;
+    line-height: 1.3;
+  }
   .navbar.scrolled .brand, .navbar.scrolled .mobile-toggle {
     color: var(--text-main);
   }
