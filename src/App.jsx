@@ -56,7 +56,7 @@ function App() {
             <a href="#resume" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.resume}</a>
             <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.contact}</a>
             
-            <button className="lang-toggle" onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} style={{ background: 'none', border: '1px solid currentColor', borderRadius: '20px', padding: '6px 14px', color: isScrolled ? '#0F172A' : '#F8FAFC', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: 'bold', marginLeft: '1rem' }}>
+            <button className="lang-toggle" onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}>
               <Globe size={16} /> {lang === 'tr' ? 'EN' : 'TR'}
             </button>
           </div>
@@ -70,7 +70,7 @@ function App() {
       <section id="home" className="hero">
         <div className="container">
           <motion.div className="hero-content" initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.h1 variants={fadeUpVariant} style={{ fontSize: '4rem' }}>
+            <motion.h1 variants={fadeUpVariant}>
               {t[lang].hero.title}
             </motion.h1>
 
