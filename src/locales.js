@@ -4,7 +4,7 @@ export const t = {
     hero: { title: "Yapay Zeka ile İnovasyon ve Dönüşüme Liderlik.", btnAbout: "HAKKIMDA", btnServices: "HİZMETLERİM", btnResume: "KARİYER & EĞİTİM", btnContact: "İLETİŞİM" },
     about: {
       expYears: "19+", expText: "YILLIK\nTECRÜBE",
-      title: "Teknoloji ve Araştırma Liderliği",
+      title: "Baş Yapay Zeka Yöneticisi (CAIO) ve Ar\u2011Ge Liderliği",
       p1: "Yeditepe Üniversitesi Bilgisayar Mühendisliği bölümünde 4.00 ortalama ile Doktora (Ph.D.) tez aşamasında olan C. Balkı GEMİRTER ALAÇAM; yapay zeka, derin öğrenme ve inovasyon yönetimi alanlarında 19 yılı aşkın köklü bir kariyere sahiptir.",
       p2: "CEIBA Health, Bayegan, Agada Tech, Yapı Kredi Teknoloji ve TEB gibi sektör öncüsü kurumlarda CAIO (Chief AI Officer) ve Ar-Ge Direktörü olarak görev yapmıştır. Sağlık teknolojilerinde LLM tabanlı asistanlar, finansta dolandırıcılık tespiti ve emtia ticaretinde öngörüsel modellemeler gibi kritik projeleri hayata geçirmiştir.",
       f1Title: "Akademik ve Sektörel Sentez", f1Desc: "Küçük kohort verileri ve Derin Öğrenme (DL) mimarilerinde ön bilgi kullanımı ile görüntü tanıma ve tıbbi teşhis üzerine doktora araştırmaları yürütmekte ve uluslararası bilimsel yayınlara imza atmaktadır.",
@@ -13,7 +13,7 @@ export const t = {
     },
     expertise: { title: "Uzmanlık Alanlarım" },
     services: { title: "Danışmanlık Hizmetleri", subtitle: "Fractional CAIO ve AI Strateji Danışmanı olarak işletmenizi geleceğe taşıyan özelleştirilmiş çözümler sunuyorum." },
-    resume: { title: "Kariyer & Eğitim", subtitle: "19 yılı aşkın teknoloji liderliği, akademik araştırmalar ve uluslararası ölçekli Ar-Ge projeleri.", downloadCV: "Özgeçmişi İndir (PDF)", experience: "Deneyim", education: "Eğitim", pubs: "Akademik Yayınlar", certs: "Sertifikalar ve Ödüller" },
+    resume: { title: "Kariyer & Eğitim", subtitle: "19 yılı aşkın teknoloji liderliği, akademik araştırmalar ve uluslararası ölçekli Ar-Ge projeleri.", downloadCV: "Özgeçmişi İndir (PDF)", experience: "Deneyim", education: "Eğitim", pubs: "Akademik Yayınlar", certs: "Sertifikalar ve Ödüller", projects: "TÜBİTAK & Ar-Ge Projeleri" },
     contact: { title: "İletişime Geçin", subtitle: "Danışmanlık, akademik iş birlikleri ve yapay zeka projeleriniz için doğrudan iletişime geçebilirsiniz.", linkedin: "LinkedIn", linkedinDesc: "Profesyonel Ağ", linkedinBtn: "LINKEDIN PROFİLİ", phone: "Telefon", phoneDesc: "Mobil:", whatsappBtn: "WHATSAPP", email: "E-Posta", emailDesc: "Doğrudan e-posta gönderin.", emailBtn: "E-POSTA YAZ" },
     data: {
       practiceAreas: [
@@ -53,6 +53,16 @@ export const t = {
         { date: "Uzmanlık Sertifikası", title: "Natural Language Processing Specialization", company: "DeepLearning.AI", desc: "Büyük Dil Modelleri (LLM), duygu analizi ve makine çevirisi odaklı NLP mimarileri üzerine ileri düzey uzmanlık." },
         { date: "Uzmanlık Sertifikası", title: "Machine Learning & Deep Learning", company: "İleri Düzey Yetkinlik", desc: "Bilgisayarlı görü, makine öğrenmesi, ileri seviye veri yapıları ve modellerin üretim ortamlarına entegrasyonu." },
         { date: "Dil Yetkinlikleri", title: "Yabancı Dil Seviyeleri", company: "", desc: "İngilizce: Tam Profesyonel Yetkinlik | Japonca: Başlangıç Seviyesi" }
+      ],
+      projects: [
+        { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Görüntü İşleme Destekli Hasta Takip ve Düşme Riski Yönetimi", company: "CEIBA HEALTH", desc: "Yapay zeka tabanlı sağlık çözümlerine odaklanan Ar-Ge projesi." },
+        { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1832", badgeColor: "#3B82F6", title: "Sağlık Sektöründe Yeşil ve Sürdürülebilir Dijital Çözümler", company: "CEIBA HEALTH", desc: "Çevre dostu dijital sağlık inisiyatifi için yürütülen Ar-Ge projesi." },
+        { date: "Agada Tech", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Yapay Zeka Tabanlı Dinamik Müşteri Segmentasyonu ve Kişiselleştirilmiş Oyunlaştırma Sistemi", company: "Agada Tech", desc: "Kullanıcı tutundurma ve kişiselleştirilmiş deneyimler için gelişmiş AI modelleri." },
+        { date: "Vivoo", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Yapay Zeka Tabanlı Beslenme Analiz Sistemi", company: "Vivoo", desc: "Kişiselleştirilmiş beslenme analizlerini genişleten çok modlu sağlık AI projesi." },
+        { date: "Türk Ekonomi Bankası", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Yapay Zeka Tabanlı Müşteri Sohbet Robotu", company: "Türk Ekonomi Bankası", desc: "Dijital bankacılığa entegre edilen AI chatbot (NEURON) geliştirilmesi." },
+        { date: "Türk Ekonomi Bankası", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "ConnecTEB - VoIP ve Multimedya Çözümü", company: "Türk Ekonomi Bankası", desc: "Banka genelinde benimsenen kurum içi güvenli video konferans aracı." },
+        { date: "Türk Ekonomi Bankası", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Orion & Aquila (Kurum İçi XTM Sistemi)", company: "Türk Ekonomi Bankası", desc: "Temel BT altyapısı gelişimi ve ATM/Switch sistemlerinin ölçeklendirilmesi." },
+        { date: "Yeditepe University", badge: "EU Supported", badgeColor: "#F59E0B", title: "InVisIBLe Plus", company: "Yeditepe University", desc: "Görme engelli bireyler için kapsayıcı ve yenilikçi öğrenme aracı." }
       ]
     }
   },
@@ -61,7 +71,7 @@ export const t = {
     hero: { title: "Leading Innovation and Transformation through AI.", btnAbout: "ABOUT ME", btnServices: "SERVICES", btnResume: "RESUME", btnContact: "CONTACT" },
     about: {
       expYears: "19+", expText: "YEARS\nEXPERIENCE",
-      title: "Technology & Research Leadership",
+      title: "Chief AI Officer (CAIO) & R&D Leadership",
       p1: "Currently a Ph.D. Candidate with a 4.00 GPA in Computer Engineering at Yeditepe University, C. Balkı GEMİRTER ALAÇAM has a deeply rooted 19+ year career in artificial intelligence, deep learning, and innovation management.",
       p2: "She has served as Chief AI Officer (CAIO) and R&D Director at leading industry organizations such as CEIBA Health, Bayegan, Agada Tech, Yapı Kredi Technology, and TEB. She has successfully executed critical projects including LLM-based assistants in health-tech, fraud detection in finance, and predictive modeling in commodity trading.",
       f1Title: "Academic & Industrial Synthesis", f1Desc: "Conducts doctoral research on incorporating prior knowledge in Deep Learning (DL) architectures for image recognition and medical diagnosis with small cohort data, publishing in international scientific journals.",
@@ -70,7 +80,7 @@ export const t = {
     },
     expertise: { title: "Areas of Expertise" },
     services: { title: "Consulting Services", subtitle: "Providing customized solutions as a Fractional CAIO and AI Strategy Consultant to propel your business into the future." },
-    resume: { title: "Resume & Education", subtitle: "Over 19 years of technology leadership, academic research, and global-scale R&D projects.", downloadCV: "Download CV (PDF)", experience: "Experience", education: "Education", pubs: "Academic Publications", certs: "Certifications & Awards" },
+    resume: { title: "Resume & Education", subtitle: "Over 19 years of technology leadership, academic research, and global-scale R&D projects.", downloadCV: "Download CV (PDF)", experience: "Experience", education: "Education", pubs: "Academic Publications", certs: "Certifications & Awards", projects: "TÜBİTAK & R&D Projects" },
     contact: { title: "Get in Touch", subtitle: "Feel free to reach out directly for consulting, academic collaborations, or AI projects.", linkedin: "LinkedIn", linkedinDesc: "Professional Network", linkedinBtn: "LINKEDIN PROFILE", phone: "Phone", phoneDesc: "Mobile:", whatsappBtn: "WHATSAPP", email: "Email", emailDesc: "Send a direct email.", emailBtn: "SEND EMAIL" },
     data: {
       practiceAreas: [
@@ -110,6 +120,16 @@ export const t = {
         { date: "Specialization Certificate", title: "Natural Language Processing Specialization", company: "DeepLearning.AI", desc: "Advanced expertise in Large Language Models (LLM), sentiment analysis, and machine translation-focused NLP architectures." },
         { date: "Specialization Certificate", title: "Machine Learning & Deep Learning", company: "Advanced Competency", desc: "Computer vision, machine learning, advanced data structures, and deployment of models into production environments." },
         { date: "Language Proficiency", title: "Foreign Language Levels", company: "", desc: "English: Full Professional Proficiency | Japanese: Beginner" }
+      ],
+      projects: [
+        { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Image Processing Supported Patient Monitoring and Fall Risk Management", company: "CEIBA HEALTH", desc: "Supervised R&D project focusing on AI-based healthcare solutions." },
+        { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1832", badgeColor: "#3B82F6", title: "Green and Sustainable Digital Solutions in Health Sector", company: "CEIBA HEALTH", desc: "Supervised R&D initiative for eco-friendly digital health." },
+        { date: "Agada Tech", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "AI-Based Dynamic Customer Segmentation and Personalized Gamification System", company: "Agada Tech", desc: "Advanced AI models for user retention and personalized experiences." },
+        { date: "Vivoo", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "AI-Based Nutrition Analysis System", company: "Vivoo", desc: "Multimodal health AI project expanding personalized nutrition insights." },
+        { date: "Turk Ekonomi Bankasi", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "AI-Based Customer Chatbot", company: "Turk Ekonomi Bankasi", desc: "Developed NEURON, an AI chatbot integrated into digital banking." },
+        { date: "Turk Ekonomi Bankasi", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "ConnecTEB - VoIP & Multimedia Solution", company: "Turk Ekonomi Bankasi", desc: "In-house secure video conferencing tool adopted bank-wide." },
+        { date: "Turk Ekonomi Bankasi", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Orion & Aquila (In-house XTM)", company: "Turk Ekonomi Bankasi", desc: "Core IT framework development and scaling of ATM/Switch infrastructure." },
+        { date: "Yeditepe University", badge: "EU Supported", badgeColor: "#F59E0B", title: "InVisIBLe Plus", company: "Yeditepe University", desc: "Inclusive and Innovative learning tool for Visually Impaired and Blind people." }
       ]
     }
   }

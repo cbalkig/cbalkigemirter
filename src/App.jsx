@@ -53,7 +53,6 @@ function App() {
             <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.home}</a>
             <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.about}</a>
             <a href="#services" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.services}</a>
-            <a href="#resume" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.resume}</a>
             <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.contact}</a>
             
             <button className="lang-toggle" onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}>
@@ -77,7 +76,6 @@ function App() {
             <motion.div className="hero-btns" variants={fadeUpVariant}>
               <a href="#about" className="btn btn-primary">{t[lang].hero.btnAbout}</a>
               <a href="#services" className="btn btn-outline">{t[lang].hero.btnServices}</a>
-              <a href="#resume" className="btn btn-outline">{t[lang].hero.btnResume}</a>
               <a href="#contact" className="btn btn-outline">{t[lang].hero.btnContact}</a>
             </motion.div>
           </motion.div>
@@ -143,25 +141,6 @@ function App() {
         </div>
       </section>
 
-      <section id="services" className="section services" style={{ backgroundColor: '#0B0F19', color: '#F8FAFC' }}>
-        <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}>
-            <h2 className="section-title" style={{ color: '#F8FAFC' }}>{t[lang].services.title}</h2>
-            <p className="section-subtitle" style={{ color: '#CBD5E1' }}>{t[lang].services.subtitle}</p>
-          </motion.div>
-
-          <motion.div className="expertise-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
-            {t[lang].data.services.map((svc, index) => (
-              <motion.div className="expertise-card" key={index} style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', borderColor: 'rgba(255, 255, 255, 0.1)' }} variants={fadeUpVariant}>
-                <div className="expertise-icon">{icons.services[index]}</div>
-                <h3 style={{ color: '#F8FAFC' }}>{svc.title}</h3>
-                <p style={{ color: '#CBD5E1' }}>{svc.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       <section id="resume" className="section resume" style={{ backgroundColor: '#F8FAFC' }}>
         <div className="container">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '3rem' }}>
@@ -183,6 +162,22 @@ function App() {
                   </div>
                 ))}
               </div>
+
+              <hr style={{ border: 'none', borderTop: '2px dashed var(--secondary-color)', opacity: '0.2', margin: '4rem 0' }} />
+              <h3 style={{ marginTop: '0' }}><Target className="resume-icon" /> {t[lang].resume.projects}</h3>
+              <div className="timeline">
+                {t[lang].data.projects.map((proj, idx) => (
+                  <div className="timeline-item" key={idx}>
+                    <div className="timeline-dot"></div>
+                    <div className="timeline-date">{proj.date}</div>
+                    <h4>{proj.title}</h4>
+                    <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--secondary-color)', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                      {proj.badge && <span className="q-badge" style={{ backgroundColor: proj.badgeColor }}>{proj.badge}</span>}
+                    </h5>
+                    <p>{proj.desc}</p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
 
             <motion.div className="resume-column" variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
@@ -199,24 +194,8 @@ function App() {
                 ))}
               </div>
               
-              <h3 style={{ marginTop: '3rem' }}><Award className="resume-icon" /> {t[lang].resume.certs}</h3>
-              <div className="timeline">
-                {t[lang].data.certs.map((cert, idx) => (
-                  <div className="timeline-item" key={idx}>
-                    <div className="timeline-dot"></div>
-                    <div className="timeline-date">{cert.date}</div>
-                    <h4>{cert.title}</h4>
-                    <p style={{ color: 'var(--secondary-color)', fontWeight: '500', marginBottom: '0.25rem' }}>{cert.company}</p>
-                    <p>{cert.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="resume-container" style={{ marginTop: '4rem' }}>
-            <motion.div className="resume-column" variants={fadeUpVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <h3><FileText className="resume-icon" /> {t[lang].resume.pubs}</h3>
+              <hr style={{ border: 'none', borderTop: '2px dashed var(--secondary-color)', opacity: '0.2', margin: '4rem 0' }} />
+              <h3 style={{ marginTop: '0' }}><FileText className="resume-icon" /> {t[lang].resume.pubs}</h3>
               <div className="publications-list" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                 
                 <div className="pub-item" style={{ background: '#FFFFFF', padding: '1.5rem', borderRadius: '8px', borderLeft: '4px solid var(--secondary-color)', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)' }}>
@@ -275,8 +254,43 @@ function App() {
                 </div>
 
               </div>
+              <hr style={{ border: 'none', borderTop: '2px dashed var(--secondary-color)', opacity: '0.2', margin: '4rem 0' }} />
+              <h3 style={{ marginTop: '0' }}><Award className="resume-icon" /> {t[lang].resume.certs}</h3>
+              <div className="timeline">
+                {t[lang].data.certs.map((cert, idx) => (
+                  <div className="timeline-item" key={idx}>
+                    <div className="timeline-dot"></div>
+                    <div className="timeline-date">{cert.date}</div>
+                    <h4>{cert.title}</h4>
+                    <p style={{ color: 'var(--secondary-color)', fontWeight: '500', marginBottom: '0.25rem' }}>{cert.company}</p>
+                    <p>{cert.desc}</p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </div>
+
+
+
+
+        </div>
+      </section>
+      <section id="services" className="section services" style={{ backgroundColor: '#0B0F19', color: '#F8FAFC' }}>
+        <div className="container">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}>
+            <h2 className="section-title" style={{ color: '#F8FAFC' }}>{t[lang].services.title}</h2>
+            <p className="section-subtitle" style={{ color: '#CBD5E1' }}>{t[lang].services.subtitle}</p>
+          </motion.div>
+
+          <motion.div className="expertise-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
+            {t[lang].data.services.map((svc, index) => (
+              <motion.div className="expertise-card" key={index} style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', borderColor: 'rgba(255, 255, 255, 0.1)' }} variants={fadeUpVariant}>
+                <div className="expertise-icon">{icons.services[index]}</div>
+                <h3 style={{ color: '#F8FAFC' }}>{svc.title}</h3>
+                <p style={{ color: '#CBD5E1' }}>{svc.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -325,7 +339,7 @@ function App() {
 
       <footer className="footer">
         <div className="container footer-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', padding: '2rem 0' }}>
-          <a href={`${import.meta.env.BASE_URL}C_Balki_Gemirter_Alacam_CV.pdf`} download="C_Balki_Gemirter_Alacam_CV.pdf" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+          <a href={`${import.meta.env.BASE_URL}C_Balki_Gemirter_Alacam_CV_${lang}.pdf`} download={`C_Balki_Gemirter_Alacam_CV_${lang}.pdf`} className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
             <Download size={20} />
             {t[lang].resume.downloadCV}
           </a>
