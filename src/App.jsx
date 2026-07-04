@@ -163,20 +163,22 @@ function App() {
                 ))}
               </div>
 
-              <hr style={{ border: 'none', borderTop: '2px dashed var(--secondary-color)', opacity: '0.2', margin: '4rem 0' }} />
-              <h3 style={{ marginTop: '0' }}><Target className="resume-icon" /> {t[lang].resume.projects}</h3>
-              <div className="timeline">
-                {t[lang].data.projects.map((proj, idx) => (
-                  <div className="timeline-item" key={idx}>
-                    <div className="timeline-dot"></div>
-                    <div className="timeline-date">{proj.date}</div>
-                    <h4>{proj.title}</h4>
-                    <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--secondary-color)', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-                      {proj.badge && <span className="q-badge" style={{ backgroundColor: proj.badgeColor }}>{proj.badge}</span>}
-                    </h5>
-                    <p>{proj.desc}</p>
-                  </div>
-                ))}
+              <div className="desktop-projects">
+                <hr style={{ border: 'none', borderTop: '2px dashed var(--secondary-color)', opacity: '0.2', margin: '4rem 0' }} />
+                <h3 style={{ marginTop: '0' }}><Target className="resume-icon" /> {t[lang].resume.projects}</h3>
+                <div className="timeline">
+                  {t[lang].data.projects.map((proj, idx) => (
+                    <div className="timeline-item" key={idx}>
+                      <div className="timeline-dot"></div>
+                      <div className="timeline-date">{proj.date}</div>
+                      <h4>{proj.title}</h4>
+                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--secondary-color)', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                        {proj.badge && <span className="q-badge" style={{ backgroundColor: proj.badgeColor }}>{proj.badge}</span>}
+                      </h5>
+                      <p>{proj.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
@@ -254,6 +256,25 @@ function App() {
                 </div>
 
               </div>
+              
+              <div className="mobile-projects">
+                <hr style={{ border: 'none', borderTop: '2px dashed var(--secondary-color)', opacity: '0.2', margin: '4rem 0' }} />
+                <h3 style={{ marginTop: '0' }}><Target className="resume-icon" /> {t[lang].resume.projects}</h3>
+                <div className="timeline">
+                  {t[lang].data.projects.map((proj, idx) => (
+                    <div className="timeline-item" key={`mobile-proj-${idx}`}>
+                      <div className="timeline-dot"></div>
+                      <div className="timeline-date">{proj.date}</div>
+                      <h4>{proj.title}</h4>
+                      <h5 style={{ margin: '0 0 0.5rem 0', color: 'var(--secondary-color)', display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+                        {proj.badge && <span className="q-badge" style={{ backgroundColor: proj.badgeColor }}>{proj.badge}</span>}
+                      </h5>
+                      <p>{proj.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <hr style={{ border: 'none', borderTop: '2px dashed var(--secondary-color)', opacity: '0.2', margin: '4rem 0' }} />
               <h3 style={{ marginTop: '0' }}><Award className="resume-icon" /> {t[lang].resume.certs}</h3>
               <div className="timeline">

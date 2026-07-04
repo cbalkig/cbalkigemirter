@@ -84,3 +84,16 @@
   color: var(--text-light);
   line-height: 1.6;
 }
+
+.mobile-projects {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .desktop-projects {
+    display: none;
+  }
+  .mobile-projects {
+    display: block;
+  }
+}
