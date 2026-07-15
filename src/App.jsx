@@ -21,7 +21,18 @@ const staggerContainer = {
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [lang, setLang] = useState('tr');
+  const [lang, setLang] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('lang') === 'en' ? 'en' : 'tr';
+  });
+
+  const toggleLanguage = () => {
+    const newLang = lang === 'tr' ? 'en' : 'tr';
+    setLang(newLang);
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', newLang);
+    window.history.pushState({}, '', url);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +66,7 @@ function App() {
             <a href="#services" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.services}</a>
             <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.contact}</a>
             
-            <button className="lang-toggle" onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}>
+            <button className="lang-toggle" onClick={toggleLanguage}>
               <Globe size={16} /> {lang === 'tr' ? 'EN' : 'TR'}
             </button>
           </div>
