@@ -33,7 +33,6 @@ export const t = {
         { title: "İleri Seviye AI Proje Geliştirme", desc: "Bilgisayarlı Görü (CV) ve Büyük Dil Modelleri (LLM) alanında karşılaşılan zorlu problemleri çözen uçtan uca yüksek performanslı modeller tasarlıyorum." }
       ],
       experience: [
-        { date: "May 2026 - Devam Ediyor", title: "Bağımsız Danışman & Fractional CAIO", company: "AI Strategy Consultant", desc: "Vizyoner organizasyonlar için yapay zeka yatırımlarının ölçülebilir ticari başarıya dönüştürülmesi. Büyük Dil Modelleri (LLM) ve tahmine dayalı analitik mimarilerinin tasarımı ve stratejik danışmanlık." },
         { date: "Oca 2026 - Nis 2026", title: "Yapay Zeka Direktörü", company: "CEIBA HEALTH", desc: "Yeni nesil sağlık çözümleri için yapay zeka stratejisinin liderliği. TÜBİTAK destekli görüntü işleme projelerinin yönetimi." },
         { date: "May 2025 - Tem 2025", title: "Chief AI Officer (CAIO)", company: "Bayegan", desc: "Emtia ticareti için yapay zeka destekli risk tahmin sistemlerinin ve öngörüsel modellerin tasarımı." },
         { date: "Eyl 2024 - Oca 2025", title: "VP of Artificial Intelligence", company: "Agada Tech", desc: "Müşteri segmentasyon modelleri ve takviyeli öğrenme (RL) ile sadakat optimizasyonu süreçlerinin yönetimi." },
@@ -100,7 +99,7 @@ export const t = {
         { title: "Advanced AI Project Development", desc: "Designing end-to-end high-performance models to solve the most challenging problems in Computer Vision (CV) and Large Language Models (LLM)." }
       ],
       experience: [
-        { date: "May 2026 - Present", title: "Independent Consultant & Fractional CAIO", company: "AI Strategy Consultant", desc: "Transforming AI investments into measurable commercial success for visionary organizations. Design and strategic consulting for Large Language Models (LLM) and predictive analytics architectures." },
+        { date: "May 2026 - Present", title: "dent Consultant & Fractional CAIO", company: "AI Strategy Consultant", desc: "Transforming AI investments into measurable commercial success for visionary organizations. Design and strategic consulting for Large Language Models (LLM) and predictive analytics architectures." },
         { date: "Jan 2026 - Apr 2026", title: "Director of Artificial Intelligence", company: "CEIBA HEALTH", desc: "Led AI strategy for next-generation healthcare solutions. Managed TÜBİTAK-supported computer vision projects." },
         { date: "May 2025 - Jul 2025", title: "Chief AI Officer (CAIO)", company: "Bayegan", desc: "Designed AI-supported risk prediction systems and predictive models for commodity trading." },
         { date: "Sep 2024 - Jan 2025", title: "VP of Artificial Intelligence", company: "Agada Tech", desc: "Managed customer segmentation models and loyalty optimization processes using Reinforcement Learning (RL)." },
