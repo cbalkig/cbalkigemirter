@@ -313,23 +313,97 @@ const generateHTML = (lang) => {
 </html>`;
 };
 
-const render = async (browser, lang) => {
+// Plain single-column CV for applicant tracking systems (job portals that auto-fill forms from the PDF):
+// system font (web fonts are embedded as unparseable Type 3), no columns, logos, photo or letter-spacing.
+const generateATSHTML = (lang) => {
+    const data = t[lang];
+    const r = data.resume;
+    const d = data.data;
+    const a = data.ats;
+    const languagesEntry = d.certs.find(c => c.date === r.languages);
+    const award = d.certs[0];
+    const certList = d.certs.filter(c => c !== languagesEntry && c !== award && c.pdf !== false);
+    const ul = (items, cls = '') => `<ul${cls ? ` class="${cls}"` : ''}>${items.map(b => `<li>${b}</li>`).join('')}</ul>`;
+    const entry = (title, sub, body) => `<div class="entry"><h3>${title}</h3><div class="sub">${sub.filter(Boolean).join(' | ')}</div>${body}</div>`;
+
+    return `
+<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+<meta charset="UTF-8">
+<title>${NAME} - CV</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, Helvetica, sans-serif; color: #111827; font-size: 10pt; line-height: 1.4; }
+  a { color: inherit; text-decoration: none; }
+  h1 { font-size: 19pt; line-height: 1.2; }
+  .headline { font-size: 11pt; font-weight: bold; color: #BE123C; margin-top: 2px; }
+  .contact { margin-top: 3px; color: #374151; }
+  h2 { font-size: 11.5pt; text-transform: uppercase; color: #BE123C; border-bottom: 1px solid #D1D5DB; padding-bottom: 2px; margin: 13px 0 6px 0; break-after: avoid; }
+  h3 { font-size: 10pt; break-after: avoid; }
+  .entry { margin-bottom: 7px; }
+  .sub { color: #374151; break-after: avoid; }
+  p { margin-top: 2px; }
+  ul { margin: 2px 0 0 14px; list-style-type: '•  '; }
+  li { margin-top: 1px; break-inside: avoid; }
+  ul.list li { margin-top: 3px; }
+</style>
+</head>
+<body>
+
+  <h1>${NAME}</h1>
+  <div class="headline">${data.about.title}</div>
+  <div class="contact">cbalkig@gmail.com | +90 539 293 77 07 | İstanbul, Türkiye</div>
+  <div class="contact"><a href="https://linkedin.com/in/cbalkig">linkedin.com/in/cbalkig</a> | <a href="https://www.cavidebalki.com">www.cavidebalki.com</a></div>
+
+  <h2>${a.summary}</h2>
+  <p>${data.about.pdfSummary}</p>
+
+  <h2>${a.skills}</h2>
+  ${a.skillGroups.map(g => `<p><b>${g.label}:</b> ${g.items}</p>`).join('')}
+
+  <h2>${a.experience}</h2>
+  ${d.experienceGroups.flatMap(g => g.items).map(x => entry(x.title, [x.company, x.date], ul(splitBullets(x.desc, lang)))).join('')}
+
+  <h2>${a.education}</h2>
+  ${d.education.map(e => entry(e.title, [e.company, e.medium, e.date], e.desc.split(/(?<=\.)\s+(?=(?:Tez|Thesis):)/).map(l => `<p>${l}</p>`).join(''))).join('')}
+  ${d.exams.map(x => `<p><b>${x.name}:</b> ${x.score} (${x.year}) - ${x.desc}</p>`).join('')}
+
+  <h2>${a.projects}</h2>
+  ${d.projects.map(p => entry(p.title, [p.company, p.badge, p.year], `<p>${p.desc}</p>`)).join('')}
+
+  <h2>${a.pubs}</h2>
+  ${ul(PUBLICATIONS.map(p => `<b>${p.title}</b>. ${p.authors}. <i>${p.venue}</i>. ${p.badge}.`), 'list')}
+
+  <h2>${a.service}</h2>
+  ${ul(d.service.map(s => `<b>${s.role}</b>, ${s.org} | ${s.badge}${s.desc ? `<br>${s.desc}` : ''}`), 'list')}
+
+  <h2>${a.certs}</h2>
+  ${ul(certList.map(c => `${c.title} - ${c.company} (${c.date})`))}
+
+  <h2>${a.awards}</h2>
+  ${ul([`${award.title} - ${award.company} (${award.date})`])}
+
+  ${languagesEntry ? `<h2>${a.languages}</h2><p>${languagesEntry.title.split('|').map(l => l.trim()).join(', ')}</p>` : ''}
+
+</body>
+</html>`;
+};
+
+const render = async (browser, html, path, margin) => {
     const page = await browser.newPage();
-    await page.setContent(generateHTML(lang), { waitUntil: 'networkidle0' });
+    await page.setContent(html, { waitUntil: 'networkidle0' });
     await page.evaluateHandle('document.fonts.ready');
-    await page.pdf({
-        path: `public/C_Balki_Gemirter_Alacam_CV_${lang}.pdf`,
-        format: 'A4',
-        printBackground: true,
-        margin: { top: '28px', right: '0px', bottom: '28px', left: '0px' },
-    });
+    await page.pdf({ path, format: 'A4', printBackground: true, margin });
     await page.close();
 };
 
 (async () => {
     const browser = await puppeteer.launch();
-    await render(browser, 'tr');
-    await render(browser, 'en');
+    for (const lang of ['tr', 'en']) {
+        await render(browser, generateHTML(lang), `public/C_Balki_Gemirter_Alacam_CV_${lang}.pdf`, { top: '28px', right: '0px', bottom: '28px', left: '0px' });
+        await render(browser, generateATSHTML(lang), `public/C_Balki_Gemirter_Alacam_CV_${lang}_ats.pdf`, { top: '44px', right: '52px', bottom: '44px', left: '52px' });
+    }
     await browser.close();
     console.log('PDFs generated successfully!');
 })();

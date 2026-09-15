@@ -17,6 +17,15 @@ export const t = {
     resume: { title: "Kariyer & Eğitim", subtitle: "19 yılı aşkın teknoloji liderliği, akademik araştırmalar ve uluslararası ölçekli Ar-Ge projeleri.", downloadCV: "Özgeçmişi İndir (PDF)", experience: "Deneyim", education: "Eğitim", pubs: "Akademik Yayınlar", certs: "Sertifikalar ve Ödüller", projects: "TÜBİTAK & Ar-Ge Projeleri", service: "Akademik ve Profesyonel Görevler", summary: "Profil", languages: "Diller", location: "Konum", page: "Sayfa", award: "ÖDÜL", roles: "rol", thesis: "Tez", stats: { years: "Yıl Tecrübe", projects: "Ar-Ge Projesi", pubs: "Akademik Yayın", certs: "Sertifika" } },
     contact: { title: "İletişime Geçin", subtitle: "Danışmanlık, akademik iş birlikleri ve yapay zeka projeleriniz için doğrudan iletişime geçebilirsiniz.", linkedin: "LinkedIn", linkedinDesc: "Profesyonel Ağ", linkedinBtn: "LINKEDIN PROFİLİ", phone: "Telefon", phoneDesc: "Mobil:", whatsappBtn: "WHATSAPP", email: "E-Posta", emailDesc: "Doğrudan e-posta gönderin.", emailBtn: "E-POSTA YAZ" },
     footer: { rights: "Tüm hakları saklıdır." },
+    ats: {
+      summary: "Özet", skills: "Yetkinlikler", experience: "İş Deneyimi", education: "Eğitim", projects: "Ar-Ge Projeleri", pubs: "Yayınlar", service: "Akademik ve Profesyonel Görevler", certs: "Sertifikalar", awards: "Ödüller", languages: "Diller",
+      skillGroups: [
+        { label: "Yapay Zeka ve Makine Öğrenmesi", items: "Yapay Zeka, Makine Öğrenmesi, Derin Öğrenme, Üretken Yapay Zeka (GenAI), Büyük Dil Modelleri (LLM), Doğal Dil İşleme (NLP), Bilgisayarlı Görü, Soru Cevaplama (MRQA), BERT, YOLO, GAN, Anomali Tespiti, Dolandırıcılık Tespiti, Öngörüsel Analitik, Müşteri Segmentasyonu, Alan Uyarlama (Domain Adaptation), Sinyal İşleme (DSP)" },
+        { label: "Araçlar ve Teknolojiler", items: "PyTorch, TensorFlow, Apache Spark, Java, Oracle, AMQP, MQTT" },
+        { label: "Liderlik ve Yönetim", items: "Yapay Zeka Stratejisi ve Yol Haritası, Ar-Ge Yönetimi, TÜBİTAK TEYDEB 1501 / 1832, AB Horizon 2020, Hibe ve Teşvik Süreçleri, Ekip Liderliği (17 mühendise kadar), Scrum (PSM I, PSPO I), Ürün Sahipliği" },
+        { label: "Sektörler", items: "Sağlık Teknolojileri (HealthTech), FinTech ve Bankacılık, Emtia Ticareti, E-Ticaret, Telekomünikasyon, IoT ve Akıllı Şehirler" }
+      ]
+    },
     data: {
       practiceAreas: [
         { title: "Yapay Zeka ve Derin Öğrenme", desc: "Doğal Dil İşleme (NLP), Bilgisayarlı Görü ve Büyük Dil Modelleri (LLM) ile karmaşık problemlere ölçeklenebilir ve yenilikçi çözümler." },
@@ -125,6 +134,15 @@ export const t = {
     resume: { title: "Resume & Education", subtitle: "Over 19 years of technology leadership, academic research, and global-scale R&D projects.", downloadCV: "Download CV (PDF)", experience: "Experience", education: "Education", pubs: "Academic Publications", certs: "Certifications & Awards", projects: "TÜBİTAK & R&D Projects", service: "Academic & Professional Service", summary: "Profile", languages: "Languages", location: "Location", page: "Page", award: "AWARD", roles: "roles", thesis: "Thesis", stats: { years: "Years Experience", projects: "R&D Projects", pubs: "Publications", certs: "Certificates" } },
     contact: { title: "Get in Touch", subtitle: "Feel free to reach out directly for consulting, academic collaborations, or AI projects.", linkedin: "LinkedIn", linkedinDesc: "Professional Network", linkedinBtn: "LINKEDIN PROFILE", phone: "Phone", phoneDesc: "Mobile:", whatsappBtn: "WHATSAPP", email: "Email", emailDesc: "Send a direct email.", emailBtn: "SEND EMAIL" },
     footer: { rights: "All rights reserved." },
+    ats: {
+      summary: "Summary", skills: "Skills", experience: "Work Experience", education: "Education", projects: "R&D Projects", pubs: "Publications", service: "Academic & Professional Service", certs: "Certifications", awards: "Awards", languages: "Languages",
+      skillGroups: [
+        { label: "AI & Machine Learning", items: "Artificial Intelligence, Machine Learning, Deep Learning, Generative AI (GenAI), Large Language Models (LLM), Natural Language Processing (NLP), Computer Vision, Question Answering (MRQA), BERT, YOLO, GANs, Anomaly Detection, Fraud Detection, Predictive Analytics, Customer Segmentation, Domain Adaptation, Signal Processing (DSP)" },
+        { label: "Tools & Technologies", items: "PyTorch, TensorFlow, Apache Spark, Java, Oracle, AMQP, MQTT" },
+        { label: "Leadership & Management", items: "AI Strategy & Roadmapping, R&D Management, TÜBİTAK TEYDEB 1501 / 1832, EU Horizon 2020, Grant & Incentive Management, Team Leadership (up to 17 engineers), Scrum (PSM I, PSPO I), Product Ownership" },
+        { label: "Industries", items: "HealthTech, FinTech & Banking, Commodity Trading, E-commerce, Telecommunications, IoT & Smart Cities" }
+      ]
+    },
     data: {
       practiceAreas: [
         { title: "Artificial Intelligence & Deep Learning", desc: "Scalable and innovative solutions for complex problems using Natural Language Processing (NLP), Computer Vision, and Large Language Models (LLM)." },
