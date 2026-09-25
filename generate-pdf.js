@@ -3,7 +3,7 @@ import fs from 'fs';
 import { t } from './src/locales.js';
 import { PUBLICATIONS, findLogo, monogram, groupByCompany, tenure, splitBullets, parseEdu } from './src/cvData.js';
 
-const NAME = 'C. Balkı GEMİRTER ALAÇAM';
+const NAME = 'C. Balkı GEMİRTER';
 const PORTRAIT = `data:image/jpeg;base64,${fs.readFileSync('public/images/portrait-pdf.jpg').toString('base64')}`;
 
 
@@ -401,8 +401,8 @@ const render = async (browser, html, path, margin) => {
 (async () => {
     const browser = await puppeteer.launch();
     for (const lang of ['tr', 'en']) {
-        await render(browser, generateHTML(lang), `public/C_Balki_Gemirter_Alacam_CV_${lang}.pdf`, { top: '28px', right: '0px', bottom: '28px', left: '0px' });
-        await render(browser, generateATSHTML(lang), `public/C_Balki_Gemirter_Alacam_CV_${lang}_ats.pdf`, { top: '44px', right: '52px', bottom: '44px', left: '52px' });
+        await render(browser, generateHTML(lang), `public/C_Balki_Gemirter_CV_${lang}.pdf`, { top: '28px', right: '0px', bottom: '28px', left: '0px' });
+        await render(browser, generateATSHTML(lang), `public/C_Balki_Gemirter_CV_${lang}_ats.pdf`, { top: '44px', right: '52px', bottom: '44px', left: '52px' });
     }
     await browser.close();
     console.log('PDFs generated successfully!');

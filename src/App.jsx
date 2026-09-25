@@ -34,8 +34,8 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = lang;
     document.title = lang === 'tr'
-      ? 'C. Balkı GEMİRTER ALAÇAM | Baş Yapay Zeka Yöneticisi (CAIO)'
-      : 'C. Balkı GEMİRTER ALAÇAM | Chief AI Officer (CAIO)';
+      ? 'C. Balkı GEMİRTER | Baş Yapay Zeka Yöneticisi (CAIO)'
+      : 'C. Balkı GEMİRTER | Chief AI Officer (CAIO)';
   }, [lang]);
 
   const toggleLanguage = () => {
@@ -69,7 +69,7 @@ function App() {
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-container">
           <a href="#" className={`brand ${isScrolled || isMobileMenuOpen ? 'dark-text' : ''}`}>
-            C. Balkı <span>GEMİRTER ALAÇAM</span>
+            C. Balkı <span>GEMİRTER</span>
           </a>
           
           <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
@@ -115,7 +115,7 @@ function App() {
         <div className="container about-container">
           <motion.div className="about-image" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
             <div className="about-image-wrapper">
-               <img src={`${import.meta.env.BASE_URL}images/portrait.jpg`} alt="C. Balkı GEMİRTER ALAÇAM" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+               <img src={`${import.meta.env.BASE_URL}images/portrait.jpg`} alt="C. Balkı GEMİRTER" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
             </div>
             <div className="about-badge">
               <div className="years">{t[lang].about.expYears}</div>
@@ -222,11 +222,11 @@ function App() {
 
       <footer className="footer">
         <div className="container footer-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', padding: '2rem 0' }}>
-          <a href={`${import.meta.env.BASE_URL}C_Balki_Gemirter_Alacam_CV_${lang}.pdf`} download={`C_Balki_Gemirter_Alacam_CV_${lang}.pdf`} className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+          <a href={`${import.meta.env.BASE_URL}C_Balki_Gemirter_CV_${lang}.pdf`} download={`C_Balki_Gemirter_CV_${lang}.pdf`} className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
             <Download size={20} />
             {t[lang].resume.downloadCV}
           </a>
-          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} C. Balkı GEMİRTER ALAÇAM. {t[lang].footer.rights}</p>
+          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} C. Balkı GEMİRTER. {t[lang].footer.rights}</p>
         </div>
       </footer>
     </>
