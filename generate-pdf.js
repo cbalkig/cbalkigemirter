@@ -1,11 +1,35 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs';
+import opentype from 'opentype.js';
 import { t } from './src/locales.js';
 import { PUBLICATIONS, findLogo, monogram, groupByCompany, tenure, splitBullets, parseEdu } from './src/cvData.js';
 
 const NAME = 'C. Balkı GEMİRTER';
 const PORTRAIT = `data:image/jpeg;base64,${fs.readFileSync('public/images/portrait-pdf.jpg').toString('base64')}`;
 
+// Static fonts built by scripts/build-pdf-fonts.py: Chrome embeds variable web fonts as Type 3, which text extractors read poorly.
+const FONT_DIR = 'pdf-fonts/';
+const fontFace = (family, weight, file) => `@font-face { font-family: '${family}'; font-weight: ${weight}; src: url(data:font/ttf;base64,${fs.readFileSync(FONT_DIR + file).toString('base64')}) format('truetype'); }`;
+const FONT_FACES = [
+    fontFace('Inter', 400, 'Inter-Regular.ttf'),
+    fontFace('Inter', 600, 'Inter-SemiBold.ttf'),
+    fontFace('Outfit', 600, 'Outfit-SemiBold.ttf'),
+    fontFace('Outfit', 700, 'Outfit-Bold.ttf'),
+    fontFace('Outfit Heading', 700, 'Outfit-Bold-Heading.ttf'),
+].join('\n  ');
+
+// Decorative labels (stat tiles, experience group bands, company tenure) are drawn as vector outlines instead of text:
+// they look the same, but stay out of the PDF text layer, where applicant tracking systems would read a group band or
+// a company-wide tenure as one more job. Font, size and letter-spacing must mirror the element's CSS.
+const inkFont = (file) => { const b = fs.readFileSync(FONT_DIR + file); return opentype.parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength)); };
+const INK = { inter: inkFont('Inter-Regular.ttf'), interSemi: inkFont('Inter-SemiBold.ttf'), outfitSemi: inkFont('Outfit-SemiBold.ttf'), outfitBold: inkFont('Outfit-Bold.ttf') };
+const ink = (text, font, size, { spacing = 0, italic = false, wrap = false } = {}) => (wrap ? text.split(' ') : [text]).map(part => {
+    const opts = { kerning: true, letterSpacing: spacing / size };
+    const w = font.getAdvanceWidth(part, size, opts).toFixed(2);
+    const h = (size * 0.7).toFixed(2);
+    const d = font.getPath(part, 0, 0, size, opts).commands.map(c => c.type + [c.x1, c.y1, c.x2, c.y2, c.x, c.y].filter(v => v !== undefined).map(v => +v.toFixed(2)).join(' ')).join('');
+    return `<svg class="ink" width="${w}" height="${h}" viewBox="0 -${h} ${w} ${h}" aria-hidden="true"><path${italic ? ' transform="skewX(-14)"' : ''} d="${d}"/></svg>`;
+}).join(' ');
 
 const badge = (text, color) => text ? `<span class="badge" style="background:${color}">${text}</span>` : '';
 const rows = (arr, render, n = 2) => {
@@ -55,6 +79,7 @@ const generateHTML = (lang) => {
     </div>
   </div>`;
     const ul = (text) => `<ul>${splitBullets(text, lang).map(b => `<li>${b}</li>`).join('')}</ul>`;
+    const stat = (num, label) => `<span class="stat-num">${ink(String(num), INK.outfitBold, 20)}</span><span class="stat-label">${ink(label.toLocaleUpperCase(lang), INK.interSemi, 8.8, { spacing: 1 })}</span>`;
     const pos = (x) => `<div class="pos"><div class="pos-head"><span class="pos-name">${x.title}</span><span class="date light">${x.date}</span></div>${ul(x.desc)}</div>`;
 
     return `
@@ -63,9 +88,8 @@ const generateHTML = (lang) => {
 <head>
 <meta charset="UTF-8">
 <title>${NAME} - CV</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
 <style>
+  ${FONT_FACES}
   :root {
     --primary: #0B0F19; --accent: #E11D48; --bg: #F8FAFC;
     --text: #0F172A; --muted: #64748B; --body: #475569; --line: #E2E8F0;
@@ -76,6 +100,9 @@ const generateHTML = (lang) => {
   body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; color: var(--text); font-size: 10.2px; line-height: 1.5; padding: 0 34px 20px 34px; -webkit-font-smoothing: antialiased; -webkit-print-color-adjust: exact; }
   a { color: inherit; text-decoration: none; }
   h1, h2, h3, h4, .stat-num, .group-title { font-family: 'Outfit', 'Inter', sans-serif; }
+  /* Positioned boxes paint after static ones, which scrambles the PDF text order; positioning every top-level block keeps it in reading order. */
+  body > * { position: relative; }
+  .ink { overflow: visible; fill: currentColor; }
 
   /* ---------- header ---------- */
   .header { position: relative; overflow: hidden; background: var(--primary); color: #F8FAFC; border-radius: 16px; padding: 22px 30px 20px 30px; }
@@ -96,7 +123,8 @@ const generateHTML = (lang) => {
   .stat-label { font-size: 8.8px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
   /* ---------- sections ---------- */
-  h2 { display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin: 13px 0 7px 0; break-after: avoid; }
+  /* 'Outfit Heading' carries the 2px letter-spacing in its glyph widths so extracted headings stay whole words. */
+  h2 { display: flex; align-items: center; gap: 10px; font-family: 'Outfit Heading', 'Outfit', sans-serif; font-size: 12.5px; font-weight: 700; color: var(--primary); text-transform: uppercase; margin: 13px 0 7px 0; break-after: avoid; }
   h2::before { content: ''; width: 18px; height: 3px; background: var(--accent); border-radius: 2px; }
   h2::after { content: ''; flex: 1; height: 1px; background: var(--line); }
   .summary { color: var(--body); font-size: 10.2px; line-height: 1.55; }
@@ -216,7 +244,7 @@ const generateHTML = (lang) => {
         <h1>${NAME}</h1>
         <div class="role">${data.about.title}</div>
         <div class="contact">
-          <span><b>Email</b> <a href="mailto:cbalkig@gmail.com">cbalkig@gmail.com</a></span>
+          <span><b>${data.contact.email}</b> <a href="mailto:cbalkig@gmail.com">cbalkig@gmail.com</a></span>
           <span><b>${data.contact.phone}</b> +90 539 293 77 07</span>
           <span><b>Web</b> <a href="https://www.cavidebalki.com">www.cavidebalki.com</a></span>
           <span><b>LinkedIn</b> <a href="https://linkedin.com/in/cbalkig">linkedin.com/in/cbalkig</a></span>
@@ -229,10 +257,10 @@ const generateHTML = (lang) => {
   </div>
 
   <div class="stats">
-    <div class="stat"><span class="stat-num">${data.about.expYears}</span><span class="stat-label">${r.stats.years}</span></div>
-    <div class="stat"><span class="stat-num">${d.projects.length}</span><span class="stat-label">${r.stats.projects}</span></div>
-    <div class="stat"><span class="stat-num">${PUBLICATIONS.length}</span><span class="stat-label">${r.stats.pubs}</span></div>
-    <div class="stat"><span class="stat-num">${d.certs.filter(c => c !== languagesEntry && c !== award).length}</span><span class="stat-label">${r.stats.certs}</span></div>
+    <div class="stat">${stat(data.about.expYears, r.stats.years)}</div>
+    <div class="stat">${stat(d.projects.length, r.stats.projects)}</div>
+    <div class="stat">${stat(PUBLICATIONS.length, r.stats.pubs)}</div>
+    <div class="stat">${stat(d.certs.filter(c => c !== languagesEntry && c !== award).length, r.stats.certs)}</div>
   </div>
 
   <h2>${r.summary}</h2>
@@ -240,10 +268,10 @@ const generateHTML = (lang) => {
 
   <h2>${r.experience}</h2>
   ${d.experienceGroups.map(group => {
-    const band = `<div class="band"><div class="group-header"><span class="group-title">${group.title}</span><span class="period">${group.period}</span></div><div class="group-desc">${group.desc}</div></div>`;
+    const band = `<div class="band"><div class="group-header"><span class="group-title">${ink(group.title.toLocaleUpperCase(lang), INK.outfitBold, 11.2, { spacing: 1.2 })}</span><span class="period">${ink(group.period, INK.outfitSemi, 8.6)}</span></div><div class="group-desc">${ink(group.desc, INK.inter, 9, { italic: true, wrap: true })}</div></div>`;
     const entries = groupByCompany(group.items).flatMap(co => co.roles.length === 1
       ? [`<div class="entry single start">${avatar(co.company)}<div class="co-head"><span class="co-name">${co.company}</span><span class="date">${co.roles[0].date}</span></div><div class="pos-title">${co.roles[0].title}</div>${ul(co.roles[0].desc)}</div>`]
-      : [`<div class="entry lead start">${avatar(co.company)}<div class="co-head"><span class="co-name">${co.company}</span><span class="co-count">${co.roles.length} ${r.roles}</span><span class="date">${tenure(co.roles)}</span></div>${pos(co.roles[0])}</div>`,
+      : [`<div class="entry lead start">${avatar(co.company)}<div class="co-head"><span class="co-name">${co.company}</span><span class="co-count">${ink(`${co.roles.length} ${r.roles}`, INK.interSemi, 8)}</span><span class="date">${ink(tenure(co.roles), INK.interSemi, 8.6)}</span></div>${pos(co.roles[0])}</div>`,
          ...co.roles.slice(1).map((x, i, arr) => `<div class="entry cont${i === arr.length - 1 ? ' last' : ''}">${pos(x)}</div>`)]);
     return `<div class="xgroup"><div class="keep">${band}${entries[0]}</div>${entries.slice(1).join('')}</div>`;
   }).join('')}
