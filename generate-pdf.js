@@ -266,8 +266,8 @@ const generateHTML = (lang) => {
 
   <div class="stats">
     <div class="stat">${stat(data.about.expYears, r.stats.years)}</div>
-    <div class="stat">${stat(d.projects.length, r.stats.projects)}</div>
     <div class="stat">${stat(PUBLICATIONS.length, r.stats.pubs)}</div>
+    <div class="stat">${stat(d.projects.length, r.stats.projects)}</div>
     <div class="stat">${stat(d.certs.filter(c => c !== languagesEntry && c !== award).length, r.stats.certs)}</div>
   </div>
 
