@@ -23,8 +23,8 @@ function Logo({ company }) {
   return <div className={`cv-logo mono${m.text.length > 2 ? ' sm-text' : ''}`} style={{ backgroundColor: m.color }}>{m.text}</div>;
 }
 
-function Heading({ children }) {
-  return <motion.h3 className="cv-heading" {...inView}>{children}</motion.h3>;
+function Heading({ id, children }) {
+  return <motion.h3 id={id} className="cv-heading" {...inView}>{children}</motion.h3>;
 }
 
 function Bullets({ text, lang }) {
@@ -36,11 +36,14 @@ function Bullets({ text, lang }) {
 }
 
 function Publication({ pub, index }) {
+  // The badge is tied to the title's last word so it never wraps to a line of its own.
+  const words = pub.title.split(' ');
+  const tail = words.pop();
   const body = (
     <>
       <span className="cv-pub-idx">{String(index + 1).padStart(2, '0')}</span>
       <div className="cv-pub-body">
-        <h4>{pub.title} <span className="cv-badge" style={{ backgroundColor: pub.color }}>{pub.badge}</span></h4>
+        <h4>{words.join(' ')} <span className="cv-pub-tail">{tail} <span className="cv-badge" style={{ backgroundColor: pub.color }}>{pub.badge}</span></span></h4>
         <div className="cv-pub-meta"><strong>{pub.venue}</strong><span>{pub.authors}</span></div>
       </div>
       {pub.url && <ExternalLink size={18} className="cv-pub-link" />}
@@ -61,10 +64,10 @@ export default function Resume({ lang }) {
   const featuredCerts = certList.filter((c) => c.featured);
   const otherCerts = certList.filter((c) => !c.featured);
   const stats = [
-    [L.about.expYears, r.stats.years],
-    [d.projects.length, r.stats.projects],
-    [PUBLICATIONS.length, r.stats.pubs],
-    [certList.length, r.stats.certs],
+    [L.about.expYears, r.stats.years, 'cv-experience'],
+    [d.projects.length, r.stats.projects, 'cv-projects'],
+    [PUBLICATIONS.length, r.stats.pubs, 'cv-publications'],
+    [certList.length, r.stats.certs, 'cv-certifications'],
   ];
 
   return (
@@ -76,15 +79,15 @@ export default function Resume({ lang }) {
         </motion.div>
 
         <div className="cv-stats">
-          {stats.map(([num, label]) => (
-            <motion.div className="cv-stat" key={label} {...inView}>
+          {stats.map(([num, label, target]) => (
+            <motion.a className="cv-stat" href={`#${target}`} key={label} {...inView}>
               <span className="num">{num}</span>
               <span className="label">{label}</span>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 
-        <Heading>{r.experience}</Heading>
+        <Heading id="cv-experience">{r.experience}</Heading>
         {d.experienceGroups.map((group) => (
           <div className="cv-xgroup" key={group.title}>
             <motion.aside className="cv-band" {...inView}>
@@ -171,7 +174,7 @@ export default function Resume({ lang }) {
           ))}
         </div>
 
-        <Heading>{r.projects}</Heading>
+        <Heading id="cv-projects">{r.projects}</Heading>
         <div className="cv-grid three">
           {d.projects.map((p) => (
             <motion.article className="cv-card" key={p.title} {...inView}>
@@ -186,7 +189,7 @@ export default function Resume({ lang }) {
           ))}
         </div>
 
-        <Heading>{r.pubs}</Heading>
+        <Heading id="cv-publications">{r.pubs}</Heading>
         <div className="cv-pubs">
           {PUBLICATIONS.map((pub, i) => <Publication pub={pub} index={i} key={pub.title} />)}
         </div>
@@ -210,7 +213,7 @@ export default function Resume({ lang }) {
           ))}
         </div>
 
-        <Heading>{r.certs}</Heading>
+        <Heading id="cv-certifications">{r.certs}</Heading>
         <div className="cv-featured">
           <motion.div className="cv-award" {...inView}>
             <div className="cv-award-icon"><Award size={24} /></div>

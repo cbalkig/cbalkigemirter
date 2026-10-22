@@ -70,11 +70,18 @@ const generateHTML = (lang) => {
     const award = d.certs[0];
     const certList = d.certs.filter(c => c !== languagesEntry && c !== award && c.pdf !== false);
     const summary = data.about.pdfSummary || `${data.about.p1} ${data.about.p2}`;
+    // The badge is tied to the title's last word so it never wraps to a line of its own.
+    const pubTitle = (pub) => {
+      const words = pub.title.split(' ');
+      const tail = words.pop();
+      const html = `${words.join(' ')} <span class="nowrap">${tail} ${badge(pub.badge, pub.color)}</span>`;
+      return pub.url ? `<a href="${pub.url}">${html}</a>` : html;
+    };
     const pubItem = (pub, i) => `
   <div class="pub">
     <div class="pub-idx">${String(i + 1).padStart(2, '0')}</div>
     <div>
-      <h3>${pub.url ? `<a href="${pub.url}">${pub.title}</a>` : pub.title} ${badge(pub.badge, pub.color)}</h3>
+      <h3>${pubTitle(pub)}</h3>
       <div class="meta"><b>${pub.venue}</b> &nbsp;|&nbsp; ${pub.authors}</div>
     </div>
   </div>`;
@@ -218,6 +225,7 @@ const generateHTML = (lang) => {
   .keep-pubs { break-inside: avoid; }
   .pub-idx { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--accent); font-size: 10px; width: 16px; flex-shrink: 0; padding-top: 1px; }
   .pub h3 { font-size: 10.2px; font-weight: 600; line-height: 1.3; }
+  .nowrap { white-space: nowrap; }
   .pub .meta { font-size: 8.8px; color: var(--muted); margin-top: 2px; }
   .pub .meta b { color: var(--primary); font-weight: 600; }
 
