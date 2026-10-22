@@ -65,8 +65,8 @@ export default function Resume({ lang }) {
   const otherCerts = certList.filter((c) => !c.featured);
   const stats = [
     [L.about.expYears, r.stats.years, 'cv-experience'],
-    [d.projects.length, r.stats.projects, 'cv-projects'],
     [PUBLICATIONS.length, r.stats.pubs, 'cv-publications'],
+    [d.projects.length, r.stats.projects, 'cv-projects'],
     [certList.length, r.stats.certs, 'cv-certifications'],
   ];
 
@@ -174,6 +174,11 @@ export default function Resume({ lang }) {
           ))}
         </div>
 
+        <Heading id="cv-publications">{r.pubs}</Heading>
+        <div className="cv-pubs">
+          {PUBLICATIONS.map((pub, i) => <Publication pub={pub} index={i} key={pub.title} />)}
+        </div>
+
         <Heading id="cv-projects">{r.projects}</Heading>
         <div className="cv-grid three">
           {d.projects.map((p) => (
@@ -187,11 +192,6 @@ export default function Resume({ lang }) {
               <p>{p.desc}</p>
             </motion.article>
           ))}
-        </div>
-
-        <Heading id="cv-publications">{r.pubs}</Heading>
-        <div className="cv-pubs">
-          {PUBLICATIONS.map((pub, i) => <Publication pub={pub} index={i} key={pub.title} />)}
         </div>
 
         <Heading>{r.service}</Heading>

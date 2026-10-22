@@ -299,6 +299,12 @@ const generateHTML = (lang) => {
     ${d.exams.map(x => `<div class="exam"><span class="score">${x.score}</span><div><div class="name">${x.name}<span class="date">${x.year}</span></div><div class="desc">${x.desc}</div></div></div>`).join('')}
   </div>
 
+  <div class="keep-pubs">
+    <h2>${r.pubs}</h2>
+    ${PUBLICATIONS.slice(0, 2).map((pub, i) => pubItem(pub, i)).join('')}
+  </div>
+  ${PUBLICATIONS.slice(2).map((pub, i) => pubItem(pub, i + 2)).join('')}
+
   <h2>${r.projects}</h2>
   ${rows(d.projects, proj => `
     <div class="card proj">
@@ -307,12 +313,6 @@ const generateHTML = (lang) => {
       <div class="proj-co">${proj.company}</div>
       <p>${proj.desc}</p>
     </div>`, 3)}
-
-  <div class="keep-pubs">
-    <h2>${r.pubs}</h2>
-    ${PUBLICATIONS.slice(0, 2).map((pub, i) => pubItem(pub, i)).join('')}
-  </div>
-  ${PUBLICATIONS.slice(2).map((pub, i) => pubItem(pub, i + 2)).join('')}
 
   <h2>${r.service}</h2>
   <div class="svc-rows">
@@ -405,11 +405,11 @@ const generateATSHTML = (lang) => {
   ${d.education.map(e => entry(e.title, [e.company, e.medium, e.date], e.desc.split(/(?<=\.)\s+(?=(?:Tez|Thesis):)/).map(l => `<p>${l}</p>`).join(''))).join('')}
   ${d.exams.map(x => `<p><b>${x.name}:</b> ${x.score} (${x.year}) - ${x.desc}</p>`).join('')}
 
-  <h2>${a.projects}</h2>
-  ${d.projects.map(p => entry(p.title, [p.company, p.badge, p.year], `<p>${p.desc}</p>`)).join('')}
-
   <h2>${a.pubs}</h2>
   ${ul(PUBLICATIONS.map(p => `<b>${p.title}</b>. ${p.authors}. <i>${p.venue}</i>. ${p.badge}.`), 'list')}
+
+  <h2>${a.projects}</h2>
+  ${d.projects.map(p => entry(p.title, [p.company, p.badge, p.year], `<p>${p.desc}</p>`)).join('')}
 
   <h2>${a.service}</h2>
   ${ul(d.service.map(s => `<b>${s.role}</b>, ${s.org} | ${s.badge}${s.desc ? `<br>${s.desc}` : ''}`), 'list')}

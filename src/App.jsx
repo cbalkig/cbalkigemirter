@@ -153,8 +153,12 @@ function App() {
             </div>
           </motion.div>
         </div>
-        
-        <div className="container" id="expertise" style={{ marginTop: '5rem' }}>
+      </section>
+
+      <Resume lang={lang} />
+
+      <section id="expertise" className="section" style={{ backgroundColor: '#F1F5F9' }}>
+        <div className="container">
           <motion.h3 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} style={{ fontSize: '2rem', marginBottom: '3rem', textAlign: 'center', color: 'var(--primary-color)' }}>
             {t[lang].expertise.title}
           </motion.h3>
@@ -169,8 +173,6 @@ function App() {
           </motion.div>
         </div>
       </section>
-
-      <Resume lang={lang} />
 
       <section id="services" className="section services" style={{ backgroundColor: '#0B0F19', color: '#F8FAFC' }}>
         <div className="container">
