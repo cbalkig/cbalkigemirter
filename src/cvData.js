@@ -1,7 +1,7 @@
 // Shared CV data and helpers used by both the website (src/Resume.jsx) and the PDF generator (generate-pdf.js).
 
 export const PUBLICATIONS = [
-  { title: 'RP-Fuse: Development of an Adaptive Dose-Gated Multimodal Model for Predicting Radiation Pneumonitis in Non-Small Cell Lung Cancer', venue: 'MDPI - Applied Sciences (2026)', authors: 'C. Balkı GEMİRTER, Esra KORKMAZ KIRAKLI, Cemre Ceren ÖZDİLLİ, Ali Kadri ÇIRAK, E. Erkan KORKMAZ, Dionysis GOULARAS', badge: 'SCIE - Q2', color: '#10B981' },
+  { title: 'RP-Fuse: Development of an Adaptive Dose-Gated Multimodal Model for Predicting Radiation Pneumonitis in Non-Small Cell Lung Cancer', venue: 'MDPI - Applied Sciences (2026)', authors: 'C. Balkı GEMİRTER, Esra KORKMAZ KIRAKLI, Cemre Ceren ÖZDİLLİ, Ali Kadri ÇIRAK, E. Erkan KORKMAZ, Dionysis GOULARAS', badge: 'SCIE - Q2', color: '#10B981', url: 'https://www.mdpi.com/2076-3417/16/21/10497' },
   { title: 'CoDA: A Cognitive-Inspired Approach for Domain Adaptation', venue: 'MDPI - Applied Sciences (2026)', authors: 'C. Balkı GEMİRTER, E. Erkan KORKMAZ, Dionysis GOULARAS', badge: 'SCIE - Q2', color: '#10B981', url: 'https://www.mdpi.com/2076-3417/16/9/4115' },
   { title: 'Location Proofing Using Video Similarity', venue: 'Journal of Scientific Reports-A (2022)', authors: 'C. Balkı GEMİRTER, Tacha SERIF', badge: 'TR Dizin', color: '#3B82F6', url: 'https://dergipark.org.tr/en/download/article-file/2416256' },
   { title: 'A Turkish Question Answering System Based on Deep Learning Neural Networks', venue: 'JISTA - Journal of Intelligent Systems (2021)', authors: 'C. Balkı GEMİRTER, Dionysis GOULARAS', badge: 'TR Dizin', color: '#3B82F6', url: 'https://dergipark.org.tr/en/download/article-file/1361881' },
