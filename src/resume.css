@@ -189,6 +189,8 @@ a.cv-stat { text-decoration: none; color: inherit; cursor: pointer; }
 
 /* abstract + cite actions on publication cards */
 .cv-pub-full { flex-wrap: nowrap; }
+.cv-pub-title { color: inherit; transition: var(--transition); }
+.cv-pub-title:hover { color: var(--secondary-color); }
 .cv-abstract { margin-top: 0.7rem; border-top: 1px dashed #E2E8F0; padding-top: 0.6rem; }
 .cv-abstract summary { display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer; background: rgba(225, 29, 72, 0.07); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; padding: 0.38rem 0.8rem; font-size: 0.74rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 1.5px; user-select: none; list-style: none; transition: var(--transition); }
 .cv-abstract summary::-webkit-details-marker { display: none; }
@@ -197,7 +199,8 @@ a.cv-stat { text-decoration: none; color: inherit; cursor: pointer; }
 .cv-abstract summary:hover { background: var(--secondary-color); border-color: var(--secondary-color); color: #FFFFFF; }
 .cv-abstract p { margin-top: 0.6rem; font-size: 0.9rem; line-height: 1.65; color: #475569; text-align: justify; }
 .cv-pub-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
-.cv-pub-action { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(225, 29, 72, 0.07); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; padding: 0.38rem 0.8rem; font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); cursor: pointer; font-family: inherit; transition: var(--transition); }
+.cv-pub-action { display: inline-flex; align-items: center; gap: 0.4rem; max-width: 100%; min-width: 0; overflow-wrap: anywhere; background: rgba(225, 29, 72, 0.07); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; padding: 0.38rem 0.8rem; font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); cursor: pointer; font-family: inherit; transition: var(--transition); }
+.cv-pub-action svg { flex-shrink: 0; }
 .cv-pub-action:hover { background: var(--secondary-color); border-color: var(--secondary-color); color: #FFFFFF; }
 .cv-pub-action.done { background: rgba(16, 185, 129, 0.08); border-color: #10B981; color: #10B981; }
 

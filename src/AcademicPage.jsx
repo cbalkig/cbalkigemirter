@@ -22,11 +22,14 @@ function PubCard({ pub, index, a }) {
   };
   const words = pub.title.split(' ');
   const tail = words.pop();
+  const titleBody = <>{words.join(' ')} <span className="cv-pub-tail">{tail} <span className="cv-badge" style={{ backgroundColor: pub.color }}>{pub.badge}</span></span></>;
   return (
     <motion.article className="cv-pub cv-pub-full" {...inView}>
       <span className="cv-pub-idx">{String(index + 1).padStart(2, '0')}</span>
       <div className="cv-pub-body">
-        <h4>{words.join(' ')} <span className="cv-pub-tail">{tail} <span className="cv-badge" style={{ backgroundColor: pub.color }}>{pub.badge}</span></span></h4>
+        <h4>{pub.url
+          ? <a className="cv-pub-title" href={pub.url} target="_blank" rel="noopener noreferrer">{titleBody}</a>
+          : titleBody}</h4>
         <div className="cv-pub-meta"><strong>{pub.venue}</strong><span>{pub.authors}</span></div>
         {pub.abstract && (
           <details className="cv-abstract">
