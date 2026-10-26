@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import opentype from 'opentype.js';
 import { t } from './src/locales.js';
-import { PUBLICATIONS, findLogo, monogram, groupByCompany, tenure, splitBullets, parseEdu } from './src/cvData.js';
+import { PUBLICATIONS, ACADEMIC_PROFILES, findLogo, monogram, groupByCompany, tenure, splitBullets, parseEdu } from './src/cvData.js';
 
 const NAME = 'C. Balkı GEMİRTER';
 const PORTRAIT = `data:image/jpeg;base64,${fs.readFileSync('public/images/portrait-pdf.jpg').toString('base64')}`;
@@ -62,40 +62,7 @@ const avatar = (company) => {
     return `<div class="avatar${m.text.length > 2 ? ' sm' : ''}" style="background-color:${m.color}">${m.text}</div>`;
 };
 
-const generateHTML = (lang) => {
-    const data = t[lang];
-    const r = data.resume;
-    const d = data.data;
-    const languagesEntry = d.certs.find(c => c.date === r.languages);
-    const award = d.certs[0];
-    const certList = d.certs.filter(c => c !== languagesEntry && c !== award && c.pdf !== false);
-    const summary = data.about.pdfSummary || `${data.about.p1} ${data.about.p2}`;
-    // The badge is tied to the title's last word so it never wraps to a line of its own.
-    const pubTitle = (pub) => {
-      const words = pub.title.split(' ');
-      const tail = words.pop();
-      const html = `${words.join(' ')} <span class="nowrap">${tail} ${badge(pub.badge, pub.color)}</span>`;
-      return pub.url ? `<a href="${pub.url}">${html}</a>` : html;
-    };
-    const pubItem = (pub, i) => `
-  <div class="pub">
-    <div class="pub-idx">${String(i + 1).padStart(2, '0')}</div>
-    <div>
-      <h3>${pubTitle(pub)}</h3>
-      <div class="meta"><b>${pub.venue}</b> &nbsp;|&nbsp; ${pub.authors}</div>
-    </div>
-  </div>`;
-    const ul = (text) => `<ul>${splitBullets(text, lang).map(b => `<li>${b}</li>`).join('')}</ul>`;
-    const stat = (num, label) => `<span class="stat-num">${ink(String(num), INK.outfitBold, 20)}</span><span class="stat-label">${ink(label.toLocaleUpperCase(lang), INK.interSemi, 8.8, { spacing: 1 })}</span>`;
-    const pos = (x) => `<div class="pos"><div class="pos-head"><span class="pos-name">${x.title}</span><span class="date light">${x.date}</span></div>${ul(x.desc)}</div>`;
-
-    return `
-<!DOCTYPE html>
-<html lang="${lang}">
-<head>
-<meta charset="UTF-8">
-<title>${NAME} - CV</title>
-<style>
+const CV_CSS = `
   ${FONT_FACES}
   :root {
     --primary: #0B0F19; --accent: #E11D48; --bg: #F8FAFC;
@@ -241,7 +208,42 @@ const generateHTML = (lang) => {
   .award .name { font-size: 10px; font-weight: 600; }
   .award .issuer { font-size: 8.8px; color: var(--muted); }
 
-</style>
+`;
+
+const generateHTML = (lang) => {
+    const data = t[lang];
+    const r = data.resume;
+    const d = data.data;
+    const languagesEntry = d.certs.find(c => c.date === r.languages);
+    const award = d.certs[0];
+    const certList = d.certs.filter(c => c !== languagesEntry && c !== award && c.pdf !== false);
+    const summary = data.about.pdfSummary || `${data.about.p1} ${data.about.p2}`;
+    // The badge is tied to the title's last word so it never wraps to a line of its own.
+    const pubTitle = (pub) => {
+      const words = pub.title.split(' ');
+      const tail = words.pop();
+      const html = `${words.join(' ')} <span class="nowrap">${tail} ${badge(pub.badge, pub.color)}</span>`;
+      return pub.url ? `<a href="${pub.url}">${html}</a>` : html;
+    };
+    const pubItem = (pub, i) => `
+  <div class="pub">
+    <div class="pub-idx">${String(i + 1).padStart(2, '0')}</div>
+    <div>
+      <h3>${pubTitle(pub)}</h3>
+      <div class="meta"><b>${pub.venue}</b> &nbsp;|&nbsp; ${pub.authors}</div>
+    </div>
+  </div>`;
+    const ul = (text) => `<ul>${splitBullets(text, lang).map(b => `<li>${b}</li>`).join('')}</ul>`;
+    const stat = (num, label) => `<span class="stat-num">${ink(String(num), INK.outfitBold, 20)}</span><span class="stat-label">${ink(label.toLocaleUpperCase(lang), INK.interSemi, 8.8, { spacing: 1 })}</span>`;
+    const pos = (x) => `<div class="pos"><div class="pos-head"><span class="pos-name">${x.title}</span><span class="date light">${x.date}</span></div>${ul(x.desc)}</div>`;
+
+    return `
+<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+<meta charset="UTF-8">
+<title>${NAME} - CV</title>
+<style>${CV_CSS}</style>
 </head>
 <body>
 
@@ -426,6 +428,162 @@ const generateATSHTML = (lang) => {
 </html>`;
 };
 
+// Academic CV: education and publications first, full citations with DOIs, teaching and
+// peer-review service, funded projects; industry experience condensed to one line per role.
+const generateAcademicHTML = (lang) => {
+    const data = t[lang];
+    const r = data.resume;
+    const a = data.academic;
+    const d = data.data;
+    const languagesEntry = d.certs.find(c => c.date === r.languages);
+    const award = d.certs[0];
+    const featuredCerts = d.certs.filter(c => c.featured);
+    const stat = (num, label) => `<span class="stat-num">${ink(String(num), INK.outfitBold, 20)}</span><span class="stat-label">${ink(label.toLocaleUpperCase(lang), INK.interSemi, 8.8, { spacing: 1 })}</span>`;
+    const pubTitle = (pub) => {
+      const words = pub.title.split(' ');
+      const tail = words.pop();
+      const html = `${words.join(' ')} <span class="nowrap">${tail} ${badge(pub.badge, pub.color)}</span>`;
+      return pub.url ? `<a href="${pub.url}">${html}</a>` : html;
+    };
+    const pubItem = (pub, i) => `
+  <div class="pub">
+    <div class="pub-idx">${String(i + 1).padStart(2, '0')}</div>
+    <div>
+      <h3>${pubTitle(pub)}</h3>
+      <div class="meta"><b>${pub.venue}</b> &nbsp;|&nbsp; ${pub.authors}${pub.doi ? ` &nbsp;|&nbsp; DOI: <a href="https://doi.org/${pub.doi}">${pub.doi}</a>` : ''}</div>
+    </div>
+  </div>`;
+
+    return `
+<!DOCTYPE html>
+<html lang="${lang}">
+<head>
+<meta charset="UTF-8">
+<title>${NAME} - Academic CV</title>
+<style>${CV_CSS}
+  .tag.profile { display: inline-block; border-color: rgba(253,164,175,0.5); color: #FDA4AF; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .chip { display: inline-flex; align-items: center; gap: 4px; background: #F8FAFC; border: 1px solid var(--line); border-radius: 50px; padding: 2px 8px; font-size: 8.4px; font-weight: 600; color: var(--text); }
+  .chip b { color: var(--accent); background: rgba(225,29,72,0.08); border-radius: 50px; padding: 1px 6px; font-size: 7.6px; white-space: nowrap; }
+  .card.xco { padding: 8px 10px; }
+  .xco-head { display: flex; align-items: center; gap: 8px; }
+  .xco-head .avatar { position: static; flex-shrink: 0; }
+  .xco-name { font-family: 'Outfit', 'Inter', sans-serif; font-size: 10.2px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .xco-role-single { font-size: 8.8px; font-weight: 600; color: var(--accent); margin-top: 1px; }
+  .xco-head .date { margin-left: auto; }
+  .xco-roles { margin-top: 5px; border-top: 1px dashed var(--line); padding-top: 4px; display: flex; flex-direction: column; gap: 3px; }
+  .xco-role { display: flex; align-items: baseline; gap: 6px; }
+  .xco-role .r { flex: 1; font-size: 8.8px; font-weight: 600; color: var(--accent); line-height: 1.3; }
+  .xp-rows .row, .xp-rows .cell { align-items: flex-start; }
+  .xp-rows .cell > * { align-self: flex-start; }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <img class="portrait" src="${PORTRAIT}" alt="${NAME}">
+      <div>
+        <h1>${NAME}</h1>
+        <div class="role">${a.role}</div>
+        <div class="contact">
+          <span><b>${data.contact.email}</b> <a href="mailto:cbalkig@gmail.com">cbalkig@gmail.com</a></span>
+          <span><b>${data.contact.phone}</b> +90 539 293 77 07</span>
+          <span><b>${r.location}</b> İstanbul, Türkiye</span>
+          ${languagesEntry ? `<span><b>${r.languages}</b> ${languagesEntry.title}</span>` : ''}
+        </div>
+        <div class="tags"><a class="tag profile" href="https://www.cavidebalki.com/academic.html">cavidebalki.com ↗</a>${ACADEMIC_PROFILES.filter(p => p.url).map(p => `<a class="tag profile" href="${p.url}">${p.name}${p.name === 'ORCID' ? ` ${p.url.replace('https://orcid.org/', '')}` : ''} ↗</a>`).join('')}</div>
+        <div class="tags">${a.interestList.split(', ').map(x => `<span class="tag">${x}</span>`).join('')}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">${stat(PUBLICATIONS.length, r.stats.pubs)}</div>
+    <div class="stat">${stat(d.education.map(e => parseEdu(e.desc)).filter(e => e.thesis).length, a.theses)}</div>
+    <div class="stat">${stat(d.projects.length, r.stats.projects)}</div>
+    <div class="stat">${stat(data.about.expYears, r.stats.years)}</div>
+  </div>
+
+  <h2>${a.summary}</h2>
+  <p class="summary">${a.pdfSummary}</p>
+
+  <h2>${r.education}</h2>
+  <div class="edu-row">
+    ${d.education.map(edu => { const e = parseEdu(edu.desc); return `
+    <div class="edu">
+      <div class="edu-top">${avatar(edu.company)}<span class="date">${edu.date}</span></div>
+      <h3>${edu.title}</h3>
+      <div class="edu-school">${edu.company}${edu.medium ? `<span class="medium">${edu.medium}</span>` : ''}</div>
+      ${e.gpa ? `<div class="gpa"><span class="gpa-num">${e.gpa}</span><span class="gpa-max">/ ${e.max}</span><span class="gpa-note">${e.note}</span></div>` : ''}
+      ${e.thesis ? `<div class="thesis"><span class="thesis-label">${r.thesis}</span>${e.thesis}</div>` : (e.rest ? `<div class="thesis">${e.rest}</div>` : '')}
+    </div>`; }).join('')}
+  </div>
+  <div class="exam-row">
+    ${d.exams.map(x => `<div class="exam"><span class="score">${x.score}</span><div><div class="name">${x.name}<span class="date">${x.year}</span></div><div class="desc">${x.desc}</div></div></div>`).join('')}
+  </div>
+
+  <div class="keep-pubs">
+    <h2>${r.pubs}</h2>
+    ${PUBLICATIONS.slice(0, 2).map((pub, i) => pubItem(pub, i)).join('')}
+  </div>
+  ${PUBLICATIONS.slice(2).map((pub, i) => pubItem(pub, i + 2)).join('')}
+
+  <h2>${r.service}</h2>
+  <div class="svc-rows">
+  ${rows(d.service, svc => `
+    <div class="card svc">
+      ${avatar(svc.org)}
+      <h3>${svc.org}</h3>
+      <div class="meta"><span class="co">${svc.role}</span>${badge(svc.badge, svc.badgeColor)}</div>
+      ${svc.courses
+        ? `<div class="chips">${svc.courses.map(c => `<span class="chip">${c.name} <b>${c.code}</b></span>`).join('')}</div>`
+        : (svc.desc ? `<p>${svc.desc}</p>` : '')}
+    </div>`)}
+  </div>
+
+  <h2>${r.projects}</h2>
+  ${rows(d.projects, proj => `
+    <div class="card proj">
+      <div class="proj-top">${badge(proj.badge, proj.badgeColor)}${proj.year ? `<span class="date">${proj.year}</span>` : ''}</div>
+      <h3>${proj.title}</h3>
+      <div class="proj-co">${proj.company}</div>
+      <p>${proj.desc}</p>
+    </div>`, 3)}
+
+  <h2>${r.experience}</h2>
+  <div class="xp-rows">
+  ${rows(groupByCompany(d.experienceGroups.flatMap(g => g.items)), co => `
+    <div class="card xco">
+      <div class="xco-head">
+        ${avatar(co.company)}
+        <div>
+          <div class="xco-name">${co.company}</div>
+          ${co.roles.length === 1 ? `<div class="xco-role-single">${co.roles[0].title}</div>` : ''}
+        </div>
+        <span class="date">${co.roles.length > 1 ? tenure(co.roles) : co.roles[0].date}</span>
+      </div>
+      ${co.roles.length > 1 ? `<div class="xco-roles">${co.roles.map(x => `<div class="xco-role"><span class="r">${x.title}</span><span class="date light">${x.date}</span></div>`).join('')}</div>` : ''}
+    </div>`)}
+  </div>
+
+  <h2>${r.certs}</h2>
+  <div class="featured">
+    <div class="award">
+      ${badge(r.award, '#F59E0B')}
+      <div><div class="name">${award.title}</div><div class="issuer">${award.company} · ${award.date}</div></div>
+    </div>
+    ${featuredCerts.map(c => `
+    <div class="award scrum">
+      ${badge(c.company, '#0EA5E9')}
+      <div><div class="name">${c.title}</div><div class="issuer">${c.date}</div></div>
+    </div>`).join('')}
+  </div>
+
+</body>
+</html>`;
+};
+
 const render = async (browser, html, path, margin) => {
     const page = await browser.newPage();
     await page.setContent(html, { waitUntil: 'networkidle0' });
@@ -438,6 +596,7 @@ const render = async (browser, html, path, margin) => {
     const browser = await puppeteer.launch();
     for (const lang of ['tr', 'en']) {
         await render(browser, generateHTML(lang), `public/C_Balki_Gemirter_CV_${lang}.pdf`, { top: '28px', right: '0px', bottom: '28px', left: '0px' });
+        await render(browser, generateAcademicHTML(lang), `public/C_Balki_Gemirter_Academic_CV_${lang}.pdf`, { top: '28px', right: '0px', bottom: '28px', left: '0px' });
         await render(browser, generateATSHTML(lang), `public/C_Balki_Gemirter_CV_${lang}_ats.pdf`, { top: '44px', right: '52px', bottom: '44px', left: '52px' });
     }
     await browser.close();

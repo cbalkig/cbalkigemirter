@@ -1,10 +1,10 @@
 export const t = {
   tr: {
-    nav: { home: "ANA SAYFA", about: "HAKKIMDA", services: "HİZMETLERİM", resume: "KARİYER & EĞİTİM", contact: "İLETİŞİM" },
-    hero: { title: "Yapay Zeka ile İnovasyon ve Dönüşüme Liderlik.", subtitle: "Baş Yapay Zeka Yöneticisi (CAIO), Ar-Ge lideri ve Bilgisayar Mühendisliği doktora adayı. 19 yılı aşkın tecrübeyle ileri düzey yapay zeka araştırmalarını ölçülebilir iş değerine dönüştürüyorum.", tags: ["Yapay Zeka Stratejisi", "LLM & NLP", "Sağlık Teknolojileri", "FinTech", "TÜBİTAK Ar-Ge"], btnAbout: "HAKKIMDA", btnServices: "HİZMETLERİM", btnResume: "KARİYER & EĞİTİM", btnContact: "İLETİŞİM" },
+    nav: { home: "ANA SAYFA", about: "HAKKIMDA", services: "HİZMETLERİM", resume: "KARİYER & EĞİTİM", academic: "AKADEMİK", contact: "İLETİŞİM" },
+    hero: { title: "Yapay Zeka ile İnovasyon ve Dönüşüme Liderlik.", subtitle: "CAIO, Ar-Ge lideri ve Bilgisayar Mühendisliği doktora adayı. 19 yılı aşkın tecrübeyle ileri düzey yapay zeka araştırmalarını ölçülebilir iş değerine dönüştürüyorum.", tags: ["Yapay Zeka Stratejisi", "LLM & NLP", "Sağlık Teknolojileri", "FinTech", "TÜBİTAK Ar-Ge"], btnAbout: "HAKKIMDA", btnServices: "HİZMETLERİM", btnResume: "KARİYER & EĞİTİM", btnContact: "İLETİŞİM" },
     about: {
-      expYears: "19+", expText: "YILLIK\nTECRÜBE",
-      title: "Baş Yapay Zeka Yöneticisi (CAIO) ve Ar\u2011Ge Liderliği",
+      expYears: "19+", expText: "YIL KURUMSAL\nTECRÜBE", phdLabel: "Doktora", phdText: "ADAYI (PhD)\nYEDİTEPE ÜNİV.",
+      title: "CAIO ve Ar\u2011Ge Liderliği",
       p1: "Yeditepe Üniversitesi Bilgisayar Mühendisliği Bölümünde 4.00 not ortalamasıyla doktora tez aşamasındayım; kurumsal Ar-Ge yöneticiliği ve derin teknoloji girişimciliğinde 19 yılı aşkın köklü bir tecrübeye sahibim.",
       p2: "TEB ve Nortel/Netaş'ta edindiğim güçlü kurumsal mühendislik temelinin üzerine, doktora araştırmalarımla eş zamanlı olarak CEIBA Health, Bayegan, Agada Tech ve Vivoo gibi yenilikçi girişimlerde CAIO ve Yapay Zeka Direktörü olarak sıfırdan yapay zeka mimarileri kurdum, TÜBİTAK projelerine ve LLM uygulamalarına liderlik ettim. Sağlık teknolojileri, finans ve emtia ticareti dikeylerinde ileri düzey yapay zeka araştırmalarını ölçeklenebilir ürünlere ve somut iş değerine dönüştürme konusunda uzmanım.",
       pdfSummary: "Yeditepe Üniversitesi Bilgisayar Mühendisliği doktora programında (Ph.D., 4.00) tez aşamasında olan C. Balkı GEMİRTER, kurumsal Ar-Ge yöneticiliği ve derin teknoloji girişimciliğinde 19 yılı aşkın köklü bir tecrübeye sahiptir. TEB ve Nortel/Netaş'ta edindiği güçlü kurumsal mühendislik temelinin üzerine, doktora araştırmalarıyla eş zamanlı olarak CEIBA Health, Bayegan, Agada Tech ve Vivoo gibi yenilikçi girişimlerde CAIO ve Yapay Zeka Direktörü olarak sıfırdan yapay zeka mimarileri kurmuş, TÜBİTAK projelerine ve LLM uygulamalarına liderlik etmiştir. Sağlık teknolojileri, finans ve emtia ticareti dikeylerinde ileri düzey yapay zeka araştırmalarını ölçeklenebilir ürünlere ve somut iş değerine dönüştürme konusunda uzmanlaşmıştır.",
@@ -12,9 +12,24 @@ export const t = {
       f2Title: "Yapay Zeka ve Ürün Dönüşümü", f2Desc: "Müşteri sadakati, dolandırıcılık tespiti ve sağlık asistanları gibi kritik süreçlerde ölçülebilir ticari değer üreten AI çözümleri.",
       f3Title: "TÜBİTAK & Ar-Ge Proje Süpervizörlüğü", f3Desc: "TÜBİTAK TEYDEB (1501, 1832) ve AB Horizon 2020 destekli büyük ölçekli Ar-Ge projelerini başarıyla yöneterek hibe ve teşvik süreçlerine liderlik ettim."
     },
+    academic: {
+      title: "Akademik Çalışmalar",
+      subtitle: "Bilimsel yayınlar, tezler, hakemlikler ve akademik görevler.",
+      role: "Doktora Adayı, Bilgisayar Mühendisliği — Yeditepe Üniversitesi",
+      profiles: "Akademik Profiller",
+      theses: "Tezler", exams: "Akademik Sınavlar",
+      ongoing: "Devam Ediyor", completed: "Tamamlandı",
+      abstract: "Özet (Abstract)", cite: "BibTeX", copied: "Kopyalandı!", thesisPdf: "Tez (PDF)",
+      backHome: "Ana Sayfa", downloadCV: "Akademik CV İndir (PDF)",
+      cvRole: "Doktora Adayı, Bilgisayar Mühendisliği",
+      summary: "Araştırma Profili",
+      interests: "Araştırma Alanları",
+      interestList: "Derin Öğrenme, Alan Uyarlama (Domain Adaptation), Medikal Görüntü Analizi, Çok Modlu Öğrenme, Doğal Dil İşleme (NLP), Büyük Dil Modelleri (LLM), Soru Cevaplama (MRQA)",
+      pdfSummary: "Yeditepe Üniversitesi Bilgisayar Mühendisliği doktora programında tez aşamasında (4.00/4.00, bölüm birincisi; beklenen mezuniyet: Kasım 2026). Doktora araştırması, küçük kohort verileriyle görüntü tanıma ve tıbbi teşhis için derin öğrenme mimarilerinde ön bilgi kullanımı üzerinedir. SCIE endeksli dergilerde (MDPI Applied Sciences) ve IEEE konferanslarında hakemli yayın sahibi; Turkish Journal of Electrical Engineering & Computer Sciences ve European Journal of Radiology dergilerinde hakem; Yapay Zeka, Derin Öğrenme ve Algoritma Analizi derslerinde öğretim asistanı. TÜBİTAK ve AB destekli projeler yürütmüş 19+ yıllık endüstriyel Ar-Ge liderliği tecrübesine sahiptir."
+    },
     expertise: { title: "Uzmanlık Alanlarım" },
     services: { title: "Danışmanlık Hizmetleri", subtitle: "Fractional CAIO ve AI Strateji Danışmanı olarak işletmenizi geleceğe taşıyan özelleştirilmiş çözümler sunuyorum." },
-    resume: { title: "Kariyer & Eğitim", subtitle: "19 yılı aşkın teknoloji liderliği, akademik araştırmalar ve uluslararası ölçekli Ar-Ge projeleri.", downloadCV: "Özgeçmişi İndir (PDF)", experience: "Deneyim", education: "Eğitim", pubs: "Akademik Yayınlar", certs: "Sertifikalar ve Ödüller", projects: "TÜBİTAK & Ar-Ge Projeleri", service: "Akademik ve Profesyonel Görevler", summary: "Profil", languages: "Diller", location: "Konum", page: "Sayfa", award: "ÖDÜL", roles: "rol", thesis: "Tez", stats: { years: "Yıl Tecrübe", projects: "Ar-Ge Projesi", pubs: "Akademik Yayın", certs: "Sertifika" } },
+    resume: { title: "Kariyer & Eğitim", subtitle: "19 yılı aşkın teknoloji liderliği, akademik araştırmalar ve uluslararası ölçekli Ar-Ge projeleri.", downloadCV: "Özgeçmişi İndir (PDF)", experience: "Deneyim", education: "Eğitim", pubs: "Akademik Yayınlar", certs: "Sertifikalar ve Ödüller", projects: "TÜBİTAK & Ar-Ge Projeleri", service: "Akademik ve Profesyonel Görevler", summary: "Profil", languages: "Diller", location: "Konum", page: "Sayfa", award: "ÖDÜL", roles: "rol", thesis: "Tez", pubsMore: "Özetler, DOI ve BibTeX için Akademik sayfaya bakın →", stats: { years: "Yıl Tecrübe", projects: "Ar-Ge Projesi", pubs: "Akademik Yayın", certs: "Sertifika" } },
     contact: { title: "İletişime Geçin", subtitle: "Danışmanlık, akademik iş birlikleri ve yapay zeka projeleriniz için doğrudan iletişime geçebilirsiniz.", linkedin: "LinkedIn", linkedinDesc: "Profesyonel Ağ", linkedinBtn: "LINKEDIN PROFİLİ", phone: "Telefon", phoneDesc: "Mobil:", whatsappBtn: "WHATSAPP", email: "E-posta", emailDesc: "Doğrudan e-posta gönderin.", emailBtn: "E-POSTA YAZ" },
     footer: { rights: "Tüm hakları saklıdır." },
     ats: {
@@ -36,12 +51,11 @@ export const t = {
         { title: "IoT ve Akıllı Şehir Analitiği", desc: "Gerçek zamanlı sensör verileri, haberleşme protokolleri (AMQP, MQTT) ve akıllı şehir sistemleri için büyük veri analitiği mimarileri." }
       ],
       services: [
-        { title: "Fractional CAIO", desc: "Yarı zamanlı Baş Yapay Zeka Yöneticisi olarak şirketinize üst düzey yapay zeka vizyonu ve stratejik liderlik sağlıyorum." },
+        { title: "Fractional CAIO", desc: "Yarı zamanlı CAIO olarak şirketinize üst düzey yapay zeka vizyonu ve stratejik liderlik sağlıyorum." },
         { title: "CEO & Executive Danışmanlığı", desc: "C-level yöneticiler ve kurucular için yapay zeka dönüşümü, veri stratejisi ve teknoloji yatırımları üzerine bire bir stratejik danışmanlık." },
         { title: "Yapay Zeka Mimari Danışmanlığı", desc: "LLM, Doğal Dil İşleme (NLP) ve Bilgisayarlı Görü sistemlerini mevcut iş süreçlerinize özel ve güvenli bir şekilde entegre ediyorum." },
-        { title: "TÜBİTAK Proje Danışmanlığı", desc: "AI kapsamındaki TÜBİTAK 1501/1507 projeleriniz için teknik araştırma, projelendirme ve akademik-ticari yazım desteği sunuyorum." },
-        { title: "Teknik Ekip Mentorluğu", desc: "Kurum içi veri bilimi ve yapay zeka ekiplerinin kurulması, teknik yetkinliklerinin artırılması ve performans optimizasyonu." },
-        { title: "İleri Seviye AI Proje Geliştirme", desc: "Bilgisayarlı Görü (CV) ve Büyük Dil Modelleri (LLM) alanlarında karşılaşılan zorlu problemleri çözen uçtan uca yüksek performanslı modeller tasarlıyorum." }
+        { title: "İleri Seviye AI Proje Geliştirme", desc: "Bilgisayarlı Görü (CV) ve Büyük Dil Modelleri (LLM) alanlarında karşılaşılan zorlu problemleri çözen uçtan uca yüksek performanslı modeller tasarlıyorum." },
+        { title: "Kurumsal AI Eğitimleri", desc: "Yöneticiler ve teknik ekipler için özelleştirilmiş yapay zeka, LLM ve üretken yapay zeka (GenAI) eğitimleri ve uygulamalı workshop'lar." }
       ],
       experienceGroups: [
         {
@@ -69,8 +83,8 @@ export const t = {
         }
       ],
       education: [
-        { date: "2020 - Ekim 2026 (Beklenen)", title: "Doktora (Ph.D.) - Bilgisayar Mühendisliği", company: "Yeditepe Üniversitesi", medium: "İngilizce Eğitim", desc: "Not Ortalaması: 4.00/4.00 (Birincilik, Tam Burslu). Tez: Küçük kohort verileri ile görüntü tanıma ve tıbbi teşhis için Derin Öğrenme (DL) mimarilerinde ön bilgi kullanımı." },
-        { date: "2018 - 2020", title: "Yüksek Lisans (M.Sc.) - Bilgisayar Mühendisliği", company: "Yeditepe Üniversitesi", medium: "İngilizce Eğitim", desc: "Not Ortalaması: 3.87/4.00 (Birincilik). Tez: Derin Öğrenme Ağlarına (BERT) Dayalı Türkçe Soru Cevaplama Sistemi." },
+        { date: "2020 - Kasım 2026 (Beklenen)", title: "Doktora (Ph.D.) - Bilgisayar Mühendisliği", company: "Yeditepe Üniversitesi", medium: "İngilizce Eğitim", desc: "Not Ortalaması: 4.00/4.00 (Birincilik, Tam Burslu). Tez: Küçük kohort verileri ile görüntü tanıma ve tıbbi teşhis için Derin Öğrenme (DL) mimarilerinde ön bilgi kullanımı." },
+        { date: "2018 - 2020", title: "Yüksek Lisans (M.Sc.) - Bilgisayar Mühendisliği", company: "Yeditepe Üniversitesi", medium: "İngilizce Eğitim", desc: "Not Ortalaması: 3.87/4.00 (Birincilik). Tez: Derin Öğrenme Ağlarına (BERT) Dayalı Türkçe Soru Cevaplama Sistemi.", thesisUrl: "theses/C_Balki_Gemirter_MSc_Thesis.pdf" },
         { date: "2002 - 2007", title: "Lisans (B.Sc.) - Bilgisayar Mühendisliği", company: "Ege Üniversitesi", desc: "Not Ortalaması: 3.34/4.00 (Dördüncülük). Bilgisayar mühendisliği temel disiplinleri ve yazılım mimarisi eğitimi." }
       ],
       exams: [
@@ -101,7 +115,7 @@ export const t = {
         { role: "Hakem", org: "Turkish Journal of Electrical Engineering & Computer Sciences", badge: "TÜBİTAK", badgeColor: "#3B82F6" },
         { role: "Hakem", org: "European Journal of Radiology", badge: "Elsevier", badgeColor: "#F59E0B" },
         { role: "Mentor", org: "Bilişim Vadisi", badge: "Teknopark", badgeColor: "#10B981" },
-        { role: "Öğretim Asistanı", org: "Yeditepe Üniversitesi", badge: "2021 – 2026", badgeColor: "#64748B", desc: "Yapay Zeka (CSE 462, AI 401), Derin Öğrenme (CSE 588) ve Algoritma Analizi (CSE 311) dersleri için akademik asistanlık ve proje danışmanlığı." }
+        { role: "Öğretim Asistanı", org: "Yeditepe Üniversitesi", badge: "2021 – 2026", badgeColor: "#64748B", desc: "Yapay Zeka (CSE 462, AI 401), Derin Öğrenme (CSE 588) ve Algoritma Analizi (CSE 311) dersleri için akademik asistanlık ve proje danışmanlığı.", courses: [{ name: "Yapay Zeka", code: "CSE 462 · AI 401" }, { name: "Derin Öğrenme", code: "CSE 588" }, { name: "Algoritma Analizi", code: "CSE 311" }] }
       ],
       projects: [
         { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Görüntü İşleme Destekli Hasta Takip ve Düşme Riski Yönetimi", year: "2026", company: "CEIBA HEALTH", desc: "Yapay zeka tabanlı sağlık çözümlerine odaklanan Ar-Ge projesi." },
@@ -117,10 +131,10 @@ export const t = {
     }
   },
   en: {
-    nav: { home: "HOME", about: "ABOUT", services: "SERVICES", resume: "RESUME", contact: "CONTACT" },
+    nav: { home: "HOME", about: "ABOUT", services: "SERVICES", resume: "RESUME", academic: "ACADEMIC", contact: "CONTACT" },
     hero: { title: "Leading Innovation and Transformation through AI.", subtitle: "Chief AI Officer (CAIO), R&D leader and Ph.D. candidate in Computer Engineering, turning advanced AI research into measurable business value with 19+ years of experience.", tags: ["AI Strategy", "LLM & NLP", "HealthTech", "FinTech", "TÜBİTAK R&D"], btnAbout: "ABOUT ME", btnServices: "SERVICES", btnResume: "RESUME", btnContact: "CONTACT" },
     about: {
-      expYears: "19+", expText: "YEARS OF\nEXPERIENCE",
+      expYears: "19+", expText: "YEARS IN\nINDUSTRY", phdLabel: "Ph.D.", phdText: "CANDIDATE\nYEDITEPE UNIV.",
       title: "Chief AI Officer (CAIO) & R&D Leadership",
       p1: "I am a Ph.D. candidate in Computer Engineering at Yeditepe University with a 4.00 GPA, combining over 19 years of enterprise R&D leadership with hands-on deep-tech entrepreneurship.",
       p2: "Building on a long-term engineering and R&D foundation at TEB and Nortel/Netaş, I have concurrently driven 0-to-1 AI product architectures, TÜBİTAK-funded projects, and LLM implementations as CAIO and AI Director across high-growth startups including CEIBA Health, Bayegan, Agada Tech, and Vivoo, alongside my doctoral research. I specialize in translating complex AI research into scalable products and measurable business value across healthcare, finance, and commodity trading.",
@@ -129,9 +143,24 @@ export const t = {
       f2Title: "AI & Product Transformation", f2Desc: "Delivering AI solutions that generate measurable commercial value in critical processes like customer loyalty, fraud detection, and virtual health assistants.",
       f3Title: "TÜBİTAK & R&D Project Supervision", f3Desc: "Successfully managed large-scale R&D projects supported by TÜBİTAK TEYDEB (1501, 1832) and EU Horizon 2020, leading grant and incentive operations."
     },
+    academic: {
+      title: "Academic Work",
+      subtitle: "Scientific publications, theses, peer review and academic service.",
+      role: "Ph.D. Candidate in Computer Engineering — Yeditepe University",
+      profiles: "Academic Profiles",
+      theses: "Theses", exams: "Academic Exams",
+      ongoing: "In Progress", completed: "Completed",
+      abstract: "Abstract", cite: "BibTeX", copied: "Copied!", thesisPdf: "Thesis (PDF)",
+      backHome: "Home", downloadCV: "Download Academic CV (PDF)",
+      cvRole: "Ph.D. Candidate in Computer Engineering",
+      summary: "Research Profile",
+      interests: "Research Interests",
+      interestList: "Deep Learning, Domain Adaptation, Medical Image Analysis, Multimodal Learning, Natural Language Processing (NLP), Large Language Models (LLM), Question Answering (MRQA)",
+      pdfSummary: "Ph.D. candidate in Computer Engineering at Yeditepe University (GPA 4.00/4.00, ranked 1st; expected graduation: November 2026). Doctoral research on incorporating prior knowledge into deep learning architectures for image recognition and medical diagnosis with small cohort data. Author of peer-reviewed publications in SCIE-indexed journals (MDPI Applied Sciences) and IEEE conferences; reviewer for the Turkish Journal of Electrical Engineering & Computer Sciences and the European Journal of Radiology; teaching assistant for Artificial Intelligence, Deep Learning, and Algorithm Analysis courses. 19+ years of industry R&D leadership supervising TÜBİTAK- and EU-funded projects."
+    },
     expertise: { title: "Areas of Expertise" },
     services: { title: "Consulting Services", subtitle: "Providing customized solutions as a Fractional CAIO and AI Strategy Consultant to propel your business into the future." },
-    resume: { title: "Resume & Education", subtitle: "Over 19 years of technology leadership, academic research, and global-scale R&D projects.", downloadCV: "Download CV (PDF)", experience: "Experience", education: "Education", pubs: "Academic Publications", certs: "Certifications & Awards", projects: "TÜBİTAK & R&D Projects", service: "Academic & Professional Service", summary: "Profile", languages: "Languages", location: "Location", page: "Page", award: "AWARD", roles: "roles", thesis: "Thesis", stats: { years: "Years of Experience", projects: "R&D Projects", pubs: "Publications", certs: "Certificates" } },
+    resume: { title: "Resume & Education", subtitle: "Over 19 years of technology leadership, academic research, and global-scale R&D projects.", downloadCV: "Download CV (PDF)", experience: "Experience", education: "Education", pubs: "Academic Publications", certs: "Certifications & Awards", projects: "TÜBİTAK & R&D Projects", service: "Academic & Professional Service", summary: "Profile", languages: "Languages", location: "Location", page: "Page", award: "AWARD", roles: "roles", thesis: "Thesis", pubsMore: "See the Academic page for abstracts, DOIs and BibTeX →", stats: { years: "Years of Experience", projects: "R&D Projects", pubs: "Publications", certs: "Certificates" } },
     contact: { title: "Get in Touch", subtitle: "Feel free to reach out directly for consulting, academic collaborations, or AI projects.", linkedin: "LinkedIn", linkedinDesc: "Professional Network", linkedinBtn: "LINKEDIN PROFILE", phone: "Phone", phoneDesc: "Mobile:", whatsappBtn: "WHATSAPP", email: "Email", emailDesc: "Send a direct email.", emailBtn: "SEND EMAIL" },
     footer: { rights: "All rights reserved." },
     ats: {
@@ -156,9 +185,8 @@ export const t = {
         { title: "Fractional CAIO", desc: "As your part-time Chief AI Officer, I provide high-level AI vision and strategic leadership for your company." },
         { title: "CEO & Executive Advisory", desc: "One-on-one strategic consulting for C-level executives and founders on AI transformation, data strategy, and tech investments." },
         { title: "AI Architecture Consulting", desc: "Custom and secure integration of LLM, Natural Language Processing (NLP), and Computer Vision systems into your existing business processes." },
-        { title: "R&D Grant Consulting", desc: "Technical research, project design, and academic/commercial writing support for your AI-focused TÜBİTAK 1501/1507 projects." },
-        { title: "Technical Team Mentorship", desc: "Establishing internal data science and AI teams, enhancing their technical capabilities, and optimizing performance." },
-        { title: "Advanced AI Project Development", desc: "Designing end-to-end high-performance models to solve the most challenging problems in Computer Vision (CV) and Large Language Models (LLM)." }
+        { title: "Advanced AI Project Development", desc: "Designing end-to-end high-performance models to solve the most challenging problems in Computer Vision (CV) and Large Language Models (LLM)." },
+        { title: "Corporate AI Training", desc: "Tailored AI, LLM, and generative AI (GenAI) training programs and hands-on workshops for executives and technical teams." }
       ],
       experienceGroups: [
         {
@@ -168,7 +196,7 @@ export const t = {
             { date: "Jan 2026 - Apr 2026", title: "Director of Artificial Intelligence", company: "CEIBA HEALTH", desc: "Led AI and R&D strategy for next-generation healthcare solutions; secured and managed TÜBİTAK 1501 and 1832 projects. Directed YOLO-based real-time fall risk detection (>90% accuracy, <10s alert latency) and architected both the LLM-powered \"AI Companion\" for automated SOAP notes and a DSP-based strip analysis system for ECG rhythm analysis." },
             { date: "May 2025 - Jul 2025", title: "Chief AI Officer (CAIO)", company: "Bayegan", desc: "Spearheaded the AI roadmap of a commodity trading company, aligning it with business objectives to enhance predictive analytics and risk management. Directed model training and optimization for automated trading systems; fostered collaboration with trading desks and software engineers to integrate AI into workflows." },
             { date: "Sep 2024 - Jan 2025", title: "VP of Artificial Intelligence", company: "Agada Tech", desc: "Spearheaded AI-driven customer segmentation models and oversaw real-time next-order prediction systems for high-volume e-commerce. Pioneered advanced AI methodologies to enhance customer loyalty strategies." },
-            { date: "May 2024 - Aug 2024", title: "AI & Applied Data Science Manager", company: "Yapı Kredi Teknoloji", desc: "Led a team of 17 engineers with 0% attrition; managed critical AI projects such as Digital Mizan and Fraud Detection. Delivered cost and FTE savings through computer vision, anomaly detection, and deep learning; led ITU Teknopark-supported R&D and contributions to Horizon 2020." },
+            { date: "May 2024 - Aug 2024", title: "AI & Applied Data Science Manager", company: "Yapı Kredi Teknoloji", desc: "Led a team of 17 engineers with 0% attrition; managed critical AI projects such as Digital Mizan and Fraud Detection. Delivered cost and FTE savings through computer vision, anomaly detection, and deep learning; led ITU Technopark-supported R&D and contributions to Horizon 2020." },
             { date: "Aug 2023 - Feb 2024", title: "Chief AI Officer (CAIO) & Data Analytics", company: "Vivoo", desc: "Managed the development of \"Welly\", an LLM-based wellness assistant, and AI-driven test strip analysis tools. Led a TÜBİTAK 1501-supported project analyzing nutritional values from meal photos." }
           ]
         },
@@ -186,8 +214,8 @@ export const t = {
         }
       ],
       education: [
-        { date: "2020 - Oct 2026 (Expected)", title: "Ph.D. - Computer Engineering", company: "Yeditepe University", medium: "Taught in English", desc: "GPA: 4.00/4.00 (Ranked 1st, Full Scholarship). Thesis: Incorporating prior knowledge in Deep Learning (DL) architectures for image recognition and medical diagnosis with small cohort data." },
-        { date: "2018 - 2020", title: "M.Sc. - Computer Engineering", company: "Yeditepe University", medium: "Taught in English", desc: "GPA: 3.87/4.00 (Ranked 1st). Thesis: A Turkish Question Answering System Based on Deep Learning Networks (BERT)." },
+        { date: "2020 - Nov 2026 (Expected)", title: "Ph.D. - Computer Engineering", company: "Yeditepe University", medium: "Taught in English", desc: "GPA: 4.00/4.00 (Ranked 1st, Full Scholarship). Thesis: Incorporating prior knowledge in Deep Learning (DL) architectures for image recognition and medical diagnosis with small cohort data." },
+        { date: "2018 - 2020", title: "M.Sc. - Computer Engineering", company: "Yeditepe University", medium: "Taught in English", desc: "GPA: 3.87/4.00 (Ranked 1st). Thesis: A Turkish Question Answering System Based on Deep Learning Networks (BERT).", thesisUrl: "theses/C_Balki_Gemirter_MSc_Thesis.pdf" },
         { date: "2002 - 2007", title: "B.Sc. - Computer Engineering", company: "Ege University", desc: "GPA: 3.34/4.00 (Ranked 4th). Education in core computer engineering disciplines and software architecture." }
       ],
       exams: [
@@ -218,7 +246,7 @@ export const t = {
         { role: "Reviewer", org: "Turkish Journal of Electrical Engineering & Computer Sciences", badge: "TÜBİTAK", badgeColor: "#3B82F6" },
         { role: "Reviewer", org: "European Journal of Radiology", badge: "Elsevier", badgeColor: "#F59E0B" },
         { role: "Mentor", org: "Bilişim Vadisi (Informatics Valley)", badge: "Technopark", badgeColor: "#10B981" },
-        { role: "Teaching Assistant", org: "Yeditepe University", badge: "2021 – 2026", badgeColor: "#64748B", desc: "Academic assistantship and project consulting for Artificial Intelligence (CSE 462, AI 401), Deep Learning (CSE 588), and Algorithm Analysis (CSE 311) courses." }
+        { role: "Teaching Assistant", org: "Yeditepe University", badge: "2021 – 2026", badgeColor: "#64748B", desc: "Academic assistantship and project consulting for Artificial Intelligence (CSE 462, AI 401), Deep Learning (CSE 588), and Algorithm Analysis (CSE 311) courses.", courses: [{ name: "Artificial Intelligence", code: "CSE 462 · AI 401" }, { name: "Deep Learning", code: "CSE 588" }, { name: "Algorithm Analysis", code: "CSE 311" }] }
       ],
       projects: [
         { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Image Processing-Supported Patient Monitoring and Fall Risk Management", year: "2026", company: "CEIBA HEALTH", desc: "Supervised R&D project focusing on AI-based healthcare solutions." },

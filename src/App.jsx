@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, BrainCircuit, Activity, LineChart, Lightbulb, Phone, Mail, CheckCircle2, Link, Target, Cpu, Briefcase, Users, MessageSquare, Radio, Download, Globe } from 'lucide-react';
+import { BrainCircuit, Activity, LineChart, Lightbulb, Target, Cpu, MessageSquare, Radio, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { t } from './locales';
-import Resume from './Resume';
+import SiteNav from './SiteNav';
 import './App.css';
 import './resume.css';
 
@@ -20,8 +20,23 @@ const staggerContainer = {
 };
 
 function App() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Scrollspy: highlight the section currently in view in the shared navbar.
+  const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    const onScroll = () => {
+      const pos = window.scrollY + window.innerHeight / 3;
+      const contact = document.getElementById('contact');
+      const services = document.getElementById('services');
+      if (contact && pos >= contact.offsetTop) setActiveSection('contact');
+      else if (services && pos >= services.offsetTop) setActiveSection('services');
+      else setActiveSection('home');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const [lang, setLang] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const fromUrl = params.get('lang');
@@ -34,7 +49,7 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = lang;
     document.title = lang === 'tr'
-      ? 'C. Balkı GEMİRTER | Baş Yapay Zeka Yöneticisi (CAIO)'
+      ? 'C. Balkı GEMİRTER | CAIO & Ar-Ge Lideri'
       : 'C. Balkı GEMİRTER | Chief AI Officer (CAIO)';
   }, [lang]);
 
@@ -46,19 +61,9 @@ function App() {
     window.history.pushState({}, '', url);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-
   const icons = {
     practiceAreas: [<BrainCircuit size={32} />, <Activity size={32} />, <LineChart size={32} />, <Lightbulb size={32} />, <MessageSquare size={32} />, <Radio size={32} />],
-    services: [<Target size={32} color="#E11D48" />, <LineChart size={32} color="#E11D48" />, <Cpu size={32} color="#E11D48" />, <Briefcase size={32} color="#E11D48" />, <Users size={32} color="#E11D48" />, <BrainCircuit size={32} color="#E11D48" />]
+    services: [<Target size={32} color="#E11D48" />, <LineChart size={32} color="#E11D48" />, <Cpu size={32} color="#E11D48" />, <BrainCircuit size={32} color="#E11D48" />, <GraduationCap size={32} color="#E11D48" />]
   };
 
   const emailAddress = "cbalkig@gmail.com";
@@ -66,32 +71,10 @@ function App() {
 
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="container navbar-container">
-          <a href="#" className={`brand ${isScrolled || isMobileMenuOpen ? 'dark-text' : ''}`}>
-            C. Balkı <span>GEMİRTER</span>
-          </a>
-          
-          <div className={`nav-links ${isMobileMenuOpen ? 'open' : ''}`}>
-            <a href="#home" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.home}</a>
-            <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.about}</a>
-            <a href="#resume" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.resume}</a>
-            <a href="#services" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.services}</a>
-            <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>{t[lang].nav.contact}</a>
-            
-            <button className="lang-toggle" onClick={toggleLanguage}>
-              <Globe size={16} /> {lang === 'tr' ? 'EN' : 'TR'}
-            </button>
-          </div>
-
-          <button className={`mobile-toggle ${isMobileMenuOpen || isScrolled ? 'dark-text' : ''}`} onClick={toggleMenu}>
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-      </nav>
+      <SiteNav lang={lang} active={activeSection} onToggleLang={toggleLanguage} />
 
       <section id="home" className="hero">
-        <div className="container">
+        <div className="container hero-inner">
           <motion.div className="hero-content" initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.h1 variants={fadeUpVariant}>
               {t[lang].hero.title}
@@ -102,60 +85,26 @@ function App() {
             </motion.div>
 
             <motion.div className="hero-btns" variants={fadeUpVariant}>
-              <a href="#about" className="btn btn-primary">{t[lang].hero.btnAbout}</a>
-              <a href="#resume" className="btn btn-outline">{t[lang].hero.btnResume}</a>
+              <a href={`${import.meta.env.BASE_URL}career.html${lang === 'tr' ? '?lang=tr' : ''}`} className="btn btn-primary">{t[lang].hero.btnResume}</a>
+              <a href={`${import.meta.env.BASE_URL}academic.html${lang === 'tr' ? '?lang=tr' : ''}`} className="btn btn-outline">{t[lang].nav.academic}</a>
               <a href="#services" className="btn btn-outline">{t[lang].hero.btnServices}</a>
               <a href="#contact" className="btn btn-outline">{t[lang].hero.btnContact}</a>
             </motion.div>
           </motion.div>
-        </div>
-      </section>
 
-      <section id="about" className="section about">
-        <div className="container about-container">
-          <motion.div className="about-image" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-            <div className="about-image-wrapper">
-               <img src={`${import.meta.env.BASE_URL}images/portrait.jpg`} alt="C. Balkı GEMİRTER" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
-            </div>
-            <div className="about-badge">
+          <motion.div className="hero-portrait" initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }}>
+            <img src={`${import.meta.env.BASE_URL}images/portrait.jpg`} alt="C. Balkı GEMİRTER" />
+            <div className="hero-badge">
               <div className="years">{t[lang].about.expYears}</div>
               <div className="text" style={{ whiteSpace: 'pre-line' }}>{t[lang].about.expText}</div>
             </div>
-          </motion.div>
-
-          <motion.div className="about-content" initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-            <h2>{t[lang].about.title}</h2>
-            <p dangerouslySetInnerHTML={{ __html: t[lang].about.p1 }}></p>
-            <p dangerouslySetInnerHTML={{ __html: t[lang].about.p2 }}></p>
-
-            <div className="about-features">
-              <div className="about-feature">
-                <CheckCircle2 className="feature-icon" size={24} />
-                <div className="feature-text">
-                  <h4>{t[lang].about.f1Title}</h4>
-                  <p>{t[lang].about.f1Desc}</p>
-                </div>
-              </div>
-              <div className="about-feature">
-                <CheckCircle2 className="feature-icon" size={24} />
-                <div className="feature-text">
-                  <h4>{t[lang].about.f2Title}</h4>
-                  <p>{t[lang].about.f2Desc}</p>
-                </div>
-              </div>
-              <div className="about-feature">
-                <CheckCircle2 className="feature-icon" size={24} />
-                <div className="feature-text">
-                  <h4>{t[lang].about.f3Title}</h4>
-                  <p>{t[lang].about.f3Desc}</p>
-                </div>
-              </div>
+            <div className="hero-badge phd">
+              <div className="years">{t[lang].about.phdLabel}</div>
+              <div className="text" style={{ whiteSpace: 'pre-line' }}>{t[lang].about.phdText}</div>
             </div>
           </motion.div>
         </div>
       </section>
-
-      <Resume lang={lang} />
 
       <section id="expertise" className="section" style={{ backgroundColor: '#F1F5F9' }}>
         <div className="container">
@@ -204,12 +153,12 @@ function App() {
             <motion.div className="contact-info" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
               
               {[
-                { Icon: Link, title: t[lang].contact.linkedin, desc: t[lang].contact.linkedinDesc, href: linkedIn, label: t[lang].contact.linkedinBtn, external: true },
-                { Icon: Phone, title: t[lang].contact.phone, desc: `${t[lang].contact.phoneDesc} +90 539 293 77 07`, href: 'https://wa.me/905392937707', label: t[lang].contact.whatsappBtn, external: true },
-                { Icon: Mail, title: t[lang].contact.email, desc: t[lang].contact.emailDesc, href: `mailto:${emailAddress}`, label: t[lang].contact.emailBtn, external: false },
-              ].map(({ Icon, title, desc, href, label, external }) => (
+                { logo: 'linkedin.svg', title: t[lang].contact.linkedin, desc: t[lang].contact.linkedinDesc, href: linkedIn, label: t[lang].contact.linkedinBtn, external: true },
+                { logo: 'whatsapp.svg', title: t[lang].contact.phone, desc: `${t[lang].contact.phoneDesc} +90 539 293 77 07`, href: 'https://wa.me/905392937707', label: t[lang].contact.whatsappBtn, external: true },
+                { logo: 'gmail.svg', title: t[lang].contact.email, desc: t[lang].contact.emailDesc, href: `mailto:${emailAddress}`, label: t[lang].contact.emailBtn, external: false },
+              ].map(({ logo, title, desc, href, label, external }) => (
                 <div className="contact-item contact-card" key={title}>
-                  <Icon className="contact-icon" size={32} />
+                  <img className="contact-icon contact-logo" src={`${import.meta.env.BASE_URL}images/profiles/${logo}`} alt="" />
                   <div className="contact-card-body">
                     <h4>{title}</h4>
                     <p>{desc}</p>
@@ -224,10 +173,6 @@ function App() {
 
       <footer className="footer">
         <div className="container footer-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', padding: '2rem 0' }}>
-          <a href={`${import.meta.env.BASE_URL}C_Balki_Gemirter_CV_${lang}.pdf`} download={`C_Balki_Gemirter_CV_${lang}.pdf`} className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Download size={20} />
-            {t[lang].resume.downloadCV}
-          </a>
           <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} C. Balkı GEMİRTER. {t[lang].footer.rights}</p>
         </div>
       </footer>

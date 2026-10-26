@@ -155,3 +155,56 @@ a.cv-stat { text-decoration: none; color: inherit; cursor: pointer; }
   .cv-role-name { flex: 1 1 100%; }
   .cv-pub { gap: 0.8rem; padding: 1rem; }
 }
+
+/* ===================== Academic page ===================== */
+.resume.academic { padding-top: 1rem; }
+.academic .cv-heading:first-of-type { margin-top: 1rem; }
+.cv-thesis-link { color: inherit; text-decoration: underline dotted; text-underline-offset: 3px; }
+.cv-thesis-link:hover { color: var(--secondary-color); }
+.cv-thesis-card h4 { display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.45; }
+.cv-thesis-icon { flex-shrink: 0; margin-top: 0.2rem; color: var(--secondary-color); }
+.cv-thesis-card .cv-card-org { margin-top: 0.6rem; }
+.cv-thesis-card .cv-pub-action { display: inline-flex; margin-top: 0.9rem; }
+
+/* dark page header band under the fixed navbar, matching the home hero */
+.subpage-hero { position: relative; overflow: hidden; background-color: var(--primary-color); padding: 8.5rem 0 2.5rem; }
+.subpage-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.18) 0%, rgba(11, 15, 25, 0) 65%); }
+.subpage-hero .cv-intro { position: relative; z-index: 1; }
+.subpage-hero .section-title { color: #F8FAFC; }
+.subpage-hero .section-subtitle { color: #CBD5E1; margin-bottom: 0.5rem; }
+.subpage .section.resume { padding-top: 3rem; }
+.cv-pubs-more { display: block; margin-top: 1rem; text-align: right; font-size: 0.85rem; font-weight: 600; color: var(--text-light); }
+.cv-pubs-more:hover { color: var(--secondary-color); }
+.academic-profiles { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-top: 0.75rem; }
+.academic-profile { display: inline-flex; align-items: center; gap: 0.4rem; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 50px; padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 600; color: var(--text-main); transition: var(--transition); }
+.academic-profile:hover { border-color: rgba(225, 29, 72, 0.35); color: var(--secondary-color); transform: translateY(-2px); }
+.academic-profile img { width: 16px; height: 16px; }
+
+/* subpage navigation: highlight the current page */
+.navbar .nav-links a.active { color: var(--secondary-color); }
+.navbar .nav-links a.active::after { width: 100%; }
+
+/* brand logos on the contact cards */
+.contact-logo { width: 34px; height: 34px; object-fit: contain; }
+
+/* abstract + cite actions on publication cards */
+.cv-pub-full { flex-wrap: nowrap; }
+.cv-abstract { margin-top: 0.7rem; border-top: 1px dashed #E2E8F0; padding-top: 0.6rem; }
+.cv-abstract summary { display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer; background: rgba(225, 29, 72, 0.07); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; padding: 0.38rem 0.8rem; font-size: 0.74rem; font-weight: 700; color: var(--secondary-color); text-transform: uppercase; letter-spacing: 1.5px; user-select: none; list-style: none; transition: var(--transition); }
+.cv-abstract summary::-webkit-details-marker { display: none; }
+.cv-abstract summary::after { content: ''; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 5px solid currentColor; transition: var(--transition); }
+.cv-abstract[open] summary::after { transform: rotate(180deg); }
+.cv-abstract summary:hover { background: var(--secondary-color); border-color: var(--secondary-color); color: #FFFFFF; }
+.cv-abstract p { margin-top: 0.6rem; font-size: 0.9rem; line-height: 1.65; color: #475569; text-align: justify; }
+.cv-pub-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+.cv-pub-action { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(225, 29, 72, 0.07); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 8px; padding: 0.38rem 0.8rem; font-size: 0.8rem; font-weight: 700; color: var(--secondary-color); cursor: pointer; font-family: inherit; transition: var(--transition); }
+.cv-pub-action:hover { background: var(--secondary-color); border-color: var(--secondary-color); color: #FFFFFF; }
+.cv-pub-action.done { background: rgba(16, 185, 129, 0.08); border-color: #10B981; color: #10B981; }
+
+/* course chips on the teaching assistant card */
+.cv-courses { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+.cv-course { display: inline-flex; align-items: center; gap: 0.45rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 50px; padding: 0.35rem 0.85rem; font-size: 0.82rem; font-weight: 600; color: var(--text-main); }
+.cv-course .code { font-size: 0.72rem; font-weight: 700; color: var(--secondary-color); background: rgba(225, 29, 72, 0.08); border-radius: 50px; padding: 0.15rem 0.55rem; white-space: nowrap; }
+
+.academic-cta { display: flex; justify-content: center; margin-top: 3.5rem; }
+.academic-cta .btn { display: inline-flex; align-items: center; gap: 0.5rem; }
