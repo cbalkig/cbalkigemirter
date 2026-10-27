@@ -17,6 +17,10 @@ export const t = {
       subtitle: "Bilimsel yayınlar, tezler, hakemlikler ve akademik görevler.",
       role: "Doktora Adayı, Bilgisayar Mühendisliği — Yeditepe Üniversitesi",
       profiles: "Akademik Profiller",
+      teaching: "Öğretim Deneyimi",
+      instructorLabel: "Ders Yürütücüsü",
+      industry: "Sektör Deneyimi",
+      industryMore: "Rol detayları ve projeler için Kariyer & Eğitim sayfasına bakın →",
       theses: "Tezler", exams: "Akademik Sınavlar",
       ongoing: "Devam Ediyor", completed: "Tamamlandı",
       abstract: "Özet (Abstract)", cite: "BibTeX", copied: "Kopyalandı!", thesisPdf: "Tez (PDF)",
@@ -25,7 +29,7 @@ export const t = {
       summary: "Araştırma Profili",
       interests: "Araştırma Alanları",
       interestList: "Derin Öğrenme, Alan Uyarlama (Domain Adaptation), Medikal Görüntü Analizi, Çok Modlu Öğrenme, Doğal Dil İşleme (NLP), Büyük Dil Modelleri (LLM), Soru Cevaplama (MRQA)",
-      pdfSummary: "Yeditepe Üniversitesi Bilgisayar Mühendisliği doktora programında tez aşamasında (4.00/4.00, bölüm birincisi; beklenen mezuniyet: Kasım 2026). Doktora araştırması, küçük kohort verileriyle görüntü tanıma ve tıbbi teşhis için derin öğrenme mimarilerinde ön bilgi kullanımı üzerinedir. SCIE endeksli dergilerde (MDPI Applied Sciences) ve IEEE konferanslarında hakemli yayın sahibi; Turkish Journal of Electrical Engineering & Computer Sciences ve European Journal of Radiology dergilerinde hakem; Yapay Zeka, Derin Öğrenme ve Algoritma Analizi derslerinde öğretim asistanı. TÜBİTAK ve AB destekli projeler yürütmüş 19+ yıllık endüstriyel Ar-Ge liderliği tecrübesine sahiptir."
+      pdfSummary: "Yeditepe Üniversitesi Bilgisayar Mühendisliği doktora programında tez aşamasında (4.00/4.00, bölüm birincisi; beklenen mezuniyet: Aralık 2026). Doktora araştırması, küçük kohort verileriyle görüntü tanıma ve tıbbi teşhis için derin öğrenme mimarilerinde ön bilgi kullanımı üzerinedir. SCIE endeksli dergilerde (MDPI Applied Sciences) ve IEEE konferanslarında hakemli yayın sahibi; Turkish Journal of Electrical Engineering & Computer Sciences ve European Journal of Radiology dergilerinde hakem. HSE University'de (Moskova) ve Yeditepe'nin üniversite geneli multidisipliner AI 401 dersinde misafir öğretim görevlisi; Yapay Zeka, Makine Öğrenmesi, Derin Öğrenme ve Algoritma Analizi derslerinde öğretim asistanı. TÜBİTAK ve AB destekli projeler yürütmüş 19+ yıllık endüstriyel Ar-Ge liderliği tecrübesine sahiptir."
     },
     expertise: { title: "Uzmanlık Alanlarım" },
     services: { title: "Danışmanlık Hizmetleri", subtitle: "Fractional CAIO ve AI Strateji Danışmanı olarak işletmenizi geleceğe taşıyan özelleştirilmiş çözümler sunuyorum." },
@@ -83,7 +87,7 @@ export const t = {
         }
       ],
       education: [
-        { date: "2020 - Kasım 2026 (Beklenen)", title: "Doktora (Ph.D.) - Bilgisayar Mühendisliği", company: "Yeditepe Üniversitesi", medium: "İngilizce Eğitim", desc: "Not Ortalaması: 4.00/4.00 (Birincilik, Tam Burslu). Tez: Küçük kohort verileri ile görüntü tanıma ve tıbbi teşhis için Derin Öğrenme (DL) mimarilerinde ön bilgi kullanımı." },
+        { date: "2020 - Aralık 2026 (Beklenen)", title: "Doktora (Ph.D.) - Bilgisayar Mühendisliği", company: "Yeditepe Üniversitesi", medium: "İngilizce Eğitim", desc: "Not Ortalaması: 4.00/4.00 (Birincilik, Tam Burslu). Tez: Küçük kohort verileri ile görüntü tanıma ve tıbbi teşhis için Derin Öğrenme (DL) mimarilerinde ön bilgi kullanımı." },
         { date: "2018 - 2020", title: "Yüksek Lisans (M.Sc.) - Bilgisayar Mühendisliği", company: "Yeditepe Üniversitesi", medium: "İngilizce Eğitim", desc: "Not Ortalaması: 3.87/4.00 (Birincilik). Tez: Derin Öğrenme Ağlarına (BERT) Dayalı Türkçe Soru Cevaplama Sistemi.", thesisUrl: "theses/C_Balki_Gemirter_MSc_Thesis.pdf" },
         { date: "2002 - 2007", title: "Lisans (B.Sc.) - Bilgisayar Mühendisliği", company: "Ege Üniversitesi", desc: "Not Ortalaması: 3.34/4.00 (Dördüncülük). Bilgisayar mühendisliği temel disiplinleri ve yazılım mimarisi eğitimi." }
       ],
@@ -115,7 +119,16 @@ export const t = {
         { role: "Hakem", org: "Turkish Journal of Electrical Engineering & Computer Sciences", badge: "TÜBİTAK", badgeColor: "#3B82F6" },
         { role: "Hakem", org: "European Journal of Radiology", badge: "Elsevier", badgeColor: "#F59E0B" },
         { role: "Mentor", org: "Bilişim Vadisi", badge: "Teknopark", badgeColor: "#10B981" },
-        { role: "Öğretim Asistanı", org: "Yeditepe Üniversitesi", badge: "2021 – 2026", badgeColor: "#64748B", desc: "Yapay Zeka (CSE 462, AI 401), Derin Öğrenme (CSE 588) ve Algoritma Analizi (CSE 311) dersleri için akademik asistanlık ve proje danışmanlığı.", courses: [{ name: "Yapay Zeka", code: "CSE 462 · AI 401" }, { name: "Derin Öğrenme", code: "CSE 588" }, { name: "Algoritma Analizi", code: "CSE 311" }] }
+        { role: "Misafir Öğretim Görevlisi", org: "HSE University", badge: "Bahar 2025 & 2026", badgeColor: "#E11D48", teaching: true, desc: "HSE University'de (Moskova) iki bahar döneminde davetli 3'er saatlik yapay zeka dersleri; dersin dönem projelerinin tasarımı." },
+        { role: "Öğretim Asistanı", org: "Yeditepe Üniversitesi", badge: "2021 – Günümüz", badgeColor: "#64748B", teaching: true, desc: "Prof. Dr. E. Erkan Korkmaz'ın Yapay Zeka (CSE 462, AI 401), Makine Öğrenmesi (CSE 585) ve Derin Öğrenme (CSE 588), Dr. Onur Demir'in Algoritma Analizi (CSE 311) derslerinde öğretim asistanlığı; dönem projeleri ile ödevlerin tasarımı ve notlandırması.", courses: [{ name: "Yapay Zeka", code: "CSE 462 · AI 401" }, { name: "Makine Öğrenmesi", code: "CSE 585" }, { name: "Derin Öğrenme", code: "CSE 588" }, { name: "Algoritma Analizi", code: "CSE 311" }] }
+      ],
+      teaching: [
+        { kind: "ta", active: true, course: "Yapay Zeka", code: "CSE 462", org: "Yeditepe Üniversitesi", dept: "Bilgisayar Mühendisliği Bölümü", role: "Öğretim Asistanı", date: "Güz dönemleri · 2021 – Günümüz", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Dönem projelerinin yürütülmesi ve notlandırması, ödev notlandırması ve öğrenci proje danışmanlığı. Aktif olarak devam ediyor." },
+        { kind: "ta", active: true, course: "Makine Öğrenmesi", code: "CSE 585", org: "Yeditepe Üniversitesi", dept: "Bilgisayar Mühendisliği Bölümü (Lisansüstü)", role: "Öğretim Asistanı", date: "Güz dönemleri · 2021 – Günümüz", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Lisansüstü dönem projelerinin yürütülmesi ve notlandırması ile ödev değerlendirmeleri. Aktif olarak devam ediyor." },
+        { kind: "ta", active: true, course: "Derin Öğrenme", code: "CSE 588", org: "Yeditepe Üniversitesi", dept: "Bilgisayar Mühendisliği Bölümü (Lisansüstü)", role: "Öğretim Asistanı", date: "Güz dönemleri · 2021 – Günümüz", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Lisansüstü dönem projelerinin yürütülmesi ve notlandırması ile ödev değerlendirmeleri. Aktif olarak devam ediyor." },
+        { kind: "lecture", course: "Disiplinlerarası Çalışma için Yapay Zeka", code: "AI 401", org: "Yeditepe Üniversitesi", dept: "Üniversite geneli multidisipliner ders", role: "Misafir Ders & Asistanlık", date: "Her güz · 2023 – 2026", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Her güz döneminde 3 saatlik ders anlatımı; ödevlerin tasarımı ve notlandırması." },
+        { kind: "lecture", course: "Yapay Zeka", org: "HSE University", dept: "Moskova, Rusya", role: "Misafir Öğretim Görevlisi", date: "Bahar 2025 & 2026", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "İki bahar döneminde davetli 3'er saatlik yapay zeka dersleri; dersin dönem projelerinin tasarlanması ve verilmesi." },
+        { kind: "ta", course: "Algoritma Analizi", code: "CSE 311", org: "Yeditepe Üniversitesi", dept: "Bilgisayar Mühendisliği Bölümü", role: "Öğretim Asistanı", date: "Bahar 2022", instructor: "Dr. Onur Demir", desc: "Ders asistanlığı; ödev ve proje değerlendirmeleri." }
       ],
       projects: [
         { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Görüntü İşleme Destekli Hasta Takip ve Düşme Riski Yönetimi", year: "2026", company: "CEIBA HEALTH", desc: "Yapay zeka tabanlı sağlık çözümlerine odaklanan Ar-Ge projesi." },
@@ -148,6 +161,10 @@ export const t = {
       subtitle: "Scientific publications, theses, peer review and academic service.",
       role: "Ph.D. Candidate in Computer Engineering — Yeditepe University",
       profiles: "Academic Profiles",
+      teaching: "Teaching Experience",
+      instructorLabel: "Course Instructor",
+      industry: "Industry Experience",
+      industryMore: "See the Resume page for role details and projects →",
       theses: "Theses", exams: "Academic Exams",
       ongoing: "In Progress", completed: "Completed",
       abstract: "Abstract", cite: "BibTeX", copied: "Copied!", thesisPdf: "Thesis (PDF)",
@@ -156,7 +173,7 @@ export const t = {
       summary: "Research Profile",
       interests: "Research Interests",
       interestList: "Deep Learning, Domain Adaptation, Medical Image Analysis, Multimodal Learning, Natural Language Processing (NLP), Large Language Models (LLM), Question Answering (MRQA)",
-      pdfSummary: "Ph.D. candidate in Computer Engineering at Yeditepe University (GPA 4.00/4.00, ranked 1st; expected graduation: November 2026). Doctoral research on incorporating prior knowledge into deep learning architectures for image recognition and medical diagnosis with small cohort data. Author of peer-reviewed publications in SCIE-indexed journals (MDPI Applied Sciences) and IEEE conferences; reviewer for the Turkish Journal of Electrical Engineering & Computer Sciences and the European Journal of Radiology; teaching assistant for Artificial Intelligence, Deep Learning, and Algorithm Analysis courses. 19+ years of industry R&D leadership supervising TÜBİTAK- and EU-funded projects."
+      pdfSummary: "Ph.D. candidate in Computer Engineering at Yeditepe University (GPA 4.00/4.00, ranked 1st; expected graduation: December 2026). Doctoral research on incorporating prior knowledge into deep learning architectures for image recognition and medical diagnosis with small cohort data. Author of peer-reviewed publications in SCIE-indexed journals (MDPI Applied Sciences) and IEEE conferences; reviewer for the Turkish Journal of Electrical Engineering & Computer Sciences and the European Journal of Radiology. Guest lecturer at HSE University (Moscow) and for Yeditepe's university-wide multidisciplinary AI 401 course; teaching assistant for Artificial Intelligence, Machine Learning, Deep Learning, and Algorithm Analysis courses. 19+ years of industry R&D leadership supervising TÜBİTAK- and EU-funded projects."
     },
     expertise: { title: "Areas of Expertise" },
     services: { title: "Consulting Services", subtitle: "Providing customized solutions as a Fractional CAIO and AI Strategy Consultant to propel your business into the future." },
@@ -214,7 +231,7 @@ export const t = {
         }
       ],
       education: [
-        { date: "2020 - Nov 2026 (Expected)", title: "Ph.D. - Computer Engineering", company: "Yeditepe University", medium: "Taught in English", desc: "GPA: 4.00/4.00 (Ranked 1st, Full Scholarship). Thesis: Incorporating prior knowledge in Deep Learning (DL) architectures for image recognition and medical diagnosis with small cohort data." },
+        { date: "2020 - Dec 2026 (Expected)", title: "Ph.D. - Computer Engineering", company: "Yeditepe University", medium: "Taught in English", desc: "GPA: 4.00/4.00 (Ranked 1st, Full Scholarship). Thesis: Incorporating prior knowledge in Deep Learning (DL) architectures for image recognition and medical diagnosis with small cohort data." },
         { date: "2018 - 2020", title: "M.Sc. - Computer Engineering", company: "Yeditepe University", medium: "Taught in English", desc: "GPA: 3.87/4.00 (Ranked 1st). Thesis: A Turkish Question Answering System Based on Deep Learning Networks (BERT).", thesisUrl: "theses/C_Balki_Gemirter_MSc_Thesis.pdf" },
         { date: "2002 - 2007", title: "B.Sc. - Computer Engineering", company: "Ege University", desc: "GPA: 3.34/4.00 (Ranked 4th). Education in core computer engineering disciplines and software architecture." }
       ],
@@ -246,7 +263,16 @@ export const t = {
         { role: "Reviewer", org: "Turkish Journal of Electrical Engineering & Computer Sciences", badge: "TÜBİTAK", badgeColor: "#3B82F6" },
         { role: "Reviewer", org: "European Journal of Radiology", badge: "Elsevier", badgeColor: "#F59E0B" },
         { role: "Mentor", org: "Bilişim Vadisi (Informatics Valley)", badge: "Technopark", badgeColor: "#10B981" },
-        { role: "Teaching Assistant", org: "Yeditepe University", badge: "2021 – 2026", badgeColor: "#64748B", desc: "Academic assistantship and project consulting for Artificial Intelligence (CSE 462, AI 401), Deep Learning (CSE 588), and Algorithm Analysis (CSE 311) courses.", courses: [{ name: "Artificial Intelligence", code: "CSE 462 · AI 401" }, { name: "Deep Learning", code: "CSE 588" }, { name: "Algorithm Analysis", code: "CSE 311" }] }
+        { role: "Guest Lecturer", org: "HSE University", badge: "Spring 2025 & 2026", badgeColor: "#E11D48", teaching: true, desc: "Invited 3-hour Artificial Intelligence lectures at HSE University (Moscow) in two spring terms; designed the course term projects." },
+        { role: "Teaching Assistant", org: "Yeditepe University", badge: "2021 – Present", badgeColor: "#64748B", teaching: true, desc: "Teaching assistant to Prof. Dr. E. Erkan Korkmaz for Artificial Intelligence (CSE 462, AI 401), Machine Learning (CSE 585) and Deep Learning (CSE 588), and to Dr. Onur Demir for Algorithm Analysis (CSE 311); designed and graded term projects and assignments.", courses: [{ name: "Artificial Intelligence", code: "CSE 462 · AI 401" }, { name: "Machine Learning", code: "CSE 585" }, { name: "Deep Learning", code: "CSE 588" }, { name: "Algorithm Analysis", code: "CSE 311" }] }
+      ],
+      teaching: [
+        { kind: "ta", active: true, course: "Artificial Intelligence", code: "CSE 462", org: "Yeditepe University", dept: "Dept. of Computer Engineering", role: "Teaching Assistant", date: "Fall terms · 2021 – Present", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Term-project supervision and grading, assignment grading, and student project consulting. Currently active." },
+        { kind: "ta", active: true, course: "Machine Learning", code: "CSE 585", org: "Yeditepe University", dept: "Dept. of Computer Engineering (Graduate)", role: "Teaching Assistant", date: "Fall terms · 2021 – Present", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Supervision and grading of graduate term projects and assignment assessment. Currently active." },
+        { kind: "ta", active: true, course: "Deep Learning", code: "CSE 588", org: "Yeditepe University", dept: "Dept. of Computer Engineering (Graduate)", role: "Teaching Assistant", date: "Fall terms · 2021 – Present", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Supervision and grading of graduate term projects and assignment assessment. Currently active." },
+        { kind: "lecture", course: "Artificial Intelligence for Interdisciplinary Studies", code: "AI 401", org: "Yeditepe University", dept: "University-wide multidisciplinary course", role: "Guest Lecturer & TA", date: "Every fall · 2023 – 2026", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Delivers a 3-hour lecture every fall semester; designs and grades the assignments." },
+        { kind: "lecture", course: "Artificial Intelligence", org: "HSE University", dept: "Moscow, Russia", role: "Guest Lecturer", date: "Spring 2025 & 2026", instructor: "Prof. Dr. E. Erkan Korkmaz", desc: "Invited 3-hour Artificial Intelligence lectures in two spring terms; designed and assigned the course term projects." },
+        { kind: "ta", course: "Algorithm Analysis", code: "CSE 311", org: "Yeditepe University", dept: "Dept. of Computer Engineering", role: "Teaching Assistant", date: "Spring 2022", instructor: "Dr. Onur Demir", desc: "Course assistantship; assignment and project assessment." }
       ],
       projects: [
         { date: "CEIBA HEALTH", badge: "TÜBİTAK TEYDEB 1501", badgeColor: "#10B981", title: "Image Processing-Supported Patient Monitoring and Fall Risk Management", year: "2026", company: "CEIBA HEALTH", desc: "Supervised R&D project focusing on AI-based healthcare solutions." },

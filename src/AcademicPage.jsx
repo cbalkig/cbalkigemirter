@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Check, Copy, Download, ExternalLink, FileText, GraduationCap } from 'lucide-react';
 import SiteNav from './SiteNav';
 import { t } from './locales';
-import { PUBLICATIONS, ACADEMIC_PROFILES, parseEdu } from './cvData';
+import { PUBLICATIONS, ACADEMIC_PROFILES, parseEdu, groupByCompany, tenure } from './cvData';
 import { Logo, Heading, EduCard, inView } from './cvComponents';
 import './App.css';
 import './resume.css';
@@ -104,6 +104,22 @@ export default function AcademicPage() {
 
       <section className="section resume academic">
         <div className="container">
+          <Heading id="cv-teaching">{a.teaching}</Heading>
+          <div className="cv-grid two align-start">
+            {d.teaching.map((x) => (
+              <motion.article className="cv-card cv-teach-card" key={`${x.org}-${x.course}-${x.date}`} {...inView}>
+                <div className="cv-card-top">
+                  <span className="cv-badge" style={{ backgroundColor: x.active ? '#E11D48' : '#64748B' }}>{x.role}</span>
+                  <span className="cv-date">{x.date}</span>
+                </div>
+                <h4>{x.course} {x.code && <span className="cv-course-code">{x.code}</span>}</h4>
+                <div className="cv-card-org">{x.org}{x.dept ? ` · ${x.dept}` : ''}</div>
+                {x.instructor && <div className="cv-teach-instructor">{a.instructorLabel}: <strong>{x.instructor}</strong></div>}
+                <p>{x.desc}</p>
+              </motion.article>
+            ))}
+          </div>
+
           <Heading id="cv-publications">{r.pubs}</Heading>
           <div className="cv-pubs">
             {PUBLICATIONS.map((pub, i) => <PubCard pub={pub} index={i} a={a} key={pub.title} />)}
@@ -150,7 +166,7 @@ export default function AcademicPage() {
 
           <Heading id="cv-service">{r.service}</Heading>
           <div className="cv-grid two align-start">
-            {d.service.map((s) => (
+            {d.service.filter((s) => !s.teaching).map((s) => (
               <motion.article className="cv-card cv-service" key={s.org} {...inView}>
                 <div className="cv-service-head">
                   <Logo company={s.org} />
@@ -176,6 +192,39 @@ export default function AcademicPage() {
               </motion.article>
             ))}
           </div>
+
+          <Heading id="cv-projects">{r.projects}</Heading>
+          <div className="cv-grid three">
+            {d.projects.map((p) => (
+              <motion.article className="cv-card" key={p.title} {...inView}>
+                <div className="cv-card-top">
+                  {p.badge && <span className="cv-badge" style={{ backgroundColor: p.badgeColor }}>{p.badge}</span>}
+                  {p.year && <span className="cv-date">{p.year}</span>}
+                </div>
+                <h4>{p.title}</h4>
+                <div className="cv-card-org">{p.company}</div>
+                <p>{p.desc}</p>
+              </motion.article>
+            ))}
+          </div>
+
+          <Heading id="cv-industry">{a.industry}</Heading>
+          <div className="cv-grid two align-start">
+            {groupByCompany(d.experienceGroups.flatMap((g) => g.items)).map((co) => (
+              <motion.article className="cv-card cv-xco" key={co.company} {...inView}>
+                <div className="cv-service-head">
+                  <Logo company={co.company} />
+                  <div>
+                    <h4>{co.company}</h4>
+                    {/* TEB's long title drops its parenthetical here; the career page keeps the full form. */}
+                    <div className="cv-card-org">{co.company.startsWith('TEB') ? co.roles[0].title.replace(/\s*\([^)]*\)/, '') : co.roles[0].title}</div>
+                  </div>
+                  <span className="cv-date">{co.roles.length > 1 ? tenure(co.roles) : co.roles[0].date}</span>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+          <motion.a className="cv-pubs-more" href={`${BASE}career.html${lang === 'tr' ? '?lang=tr' : ''}`} {...inView}>{a.industryMore}</motion.a>
 
           <motion.div className="academic-cta" {...inView}>
             <a href={`${BASE}C_Balki_Gemirter_Academic_CV_${lang}.pdf`} download={`C_Balki_Gemirter_Academic_CV_${lang}.pdf`} className="btn btn-primary">

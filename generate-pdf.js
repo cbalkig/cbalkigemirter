@@ -529,9 +529,20 @@ const generateAcademicHTML = (lang) => {
   </div>
   ${PUBLICATIONS.slice(2).map((pub, i) => pubItem(pub, i + 2)).join('')}
 
+  <h2>${a.teaching}</h2>
+  <div class="svc-rows">
+  ${rows(d.teaching, x => `
+    <div class="card">
+      <div class="proj-top"><span>${badge(x.role, x.active ? '#E11D48' : '#64748B')}</span><span class="date">${x.date}</span></div>
+      <h3>${x.course}${x.code ? ` <span class="chip"><b>${x.code}</b></span>` : ''}</h3>
+      <div class="proj-co">${x.org}${x.dept ? ` · ${x.dept}` : ''}</div>
+      <p>${x.instructor ? `<b>${a.instructorLabel}:</b> ${x.instructor} — ` : ''}${x.desc}</p>
+    </div>`)}
+  </div>
+
   <h2>${r.service}</h2>
   <div class="svc-rows">
-  ${rows(d.service, svc => `
+  ${rows(d.service.filter(s => !s.teaching), svc => `
     <div class="card svc">
       ${avatar(svc.org)}
       <h3>${svc.org}</h3>
