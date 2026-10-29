@@ -63,9 +63,10 @@ export const t = {
       ],
       experienceGroups: [
         {
-          title: "Girişim ve Dönüşüm Liderliği", period: "2023 – Günümüz",
-          desc: "Doktora araştırmaları ile eş zamanlı yürütülen, derin teknoloji girişimlerinde yapay zeka stratejisi ve ürün mimarisi kurulumları.",
+          title: "Girişim ve Dönüşüm Liderliği", period: "2021 – Günümüz",
+          desc: "Doktora araştırmaları ve üniversitedeki öğretim görevleri ile eş zamanlı yürütülen, derin teknoloji girişimlerinde yapay zeka stratejisi ve ürün mimarisi kurulumları.",
           items: [
+            { date: "Eyl 2021 - Günümüz", title: "Doktora Adayı · Öğretim Asistanı ve Misafir Öğretim Görevlisi", company: "Yeditepe Üniversitesi", academic: true, desc: "Küçük kohort verileri ile görüntü tanıma ve tıbbi teşhis için derin öğrenme mimarilerinde ön bilgi kullanımı üzerine doktora araştırması (beklenen mezuniyet: Aralık 2026). Yapay Zeka (CSE 462), Makine Öğrenmesi (CSE 585) ve Derin Öğrenme (CSE 588) derslerinde öğretim asistanlığı; bu derslerin dönem projelerinin ve ödevlerinin tasarımı ve notlandırması; üniversite geneli AI 401 dersinde ve HSE University'de (Moskova) misafir dersler." },
             { date: "Oca 2026 - Nis 2026", title: "Yapay Zeka Direktörü", company: "CEIBA HEALTH", desc: "Yeni nesil sağlık çözümleri için yapay zeka ve Ar-Ge stratejisinin liderliği; TÜBİTAK 1501 ve 1832 projelerinin alınması ve yönetimi. YOLO tabanlı gerçek zamanlı düşme riski tespiti (>%90 doğruluk, <10 sn uyarı), LLM ile otomatik SOAP notu üreten \"AI Companion\" ve EKG ritim analizi için DSP tabanlı şerit analiz sisteminin mimarisi." },
             { date: "May 2025 - Tem 2025", title: "Chief AI Officer (CAIO)", company: "Bayegan", desc: "Emtia ticareti şirketinde yapay zeka yol haritasının iş hedefleriyle uyumlu şekilde oluşturulması; öngörüsel analitik ve risk yönetimi odaklı çözümlerin liderliği. Otomatik ticaret sistemleri için model eğitimi ve optimizasyonu; ticaret masaları ve yazılım ekipleriyle yapay zekanın iş akışlarına entegrasyonu." },
             { date: "Eyl 2024 - Oca 2025", title: "VP of Artificial Intelligence", company: "Agada Tech", desc: "Yapay zeka tabanlı müşteri segmentasyon modelleri ve yüksek hacimli e-ticaret ortamı için gerçek zamanlı sonraki sipariş tahmin sistemlerinin yönetimi. Müşteri sadakatini artıran ileri AI yöntemlerinin hayata geçirilmesi." },
@@ -207,9 +208,10 @@ export const t = {
       ],
       experienceGroups: [
         {
-          title: "Startup & Transformation Leadership", period: "2023 – Present",
-          desc: "AI strategy and product architecture build-outs at deep-tech startups, carried out concurrently with doctoral research.",
+          title: "Startup & Transformation Leadership", period: "2021 – Present",
+          desc: "AI strategy and product architecture build-outs at deep-tech startups, carried out concurrently with doctoral research and university teaching.",
           items: [
+            { date: "Sep 2021 - Present", title: "Ph.D. Candidate · Teaching Assistant & Guest Lecturer", company: "Yeditepe University", academic: true, desc: "Doctoral research on incorporating prior knowledge into deep learning architectures for image recognition and medical diagnosis with small cohort data (expected graduation: December 2026). Teaching assistant for Artificial Intelligence (CSE 462), Machine Learning (CSE 585) and Deep Learning (CSE 588); designs and grades the term projects and assignments of these courses; guest lecturer for the university-wide AI 401 course and at HSE University (Moscow)." },
             { date: "Jan 2026 - Apr 2026", title: "Director of Artificial Intelligence", company: "CEIBA HEALTH", desc: "Led AI and R&D strategy for next-generation healthcare solutions; secured and managed TÜBİTAK 1501 and 1832 projects. Directed YOLO-based real-time fall risk detection (>90% accuracy, <10s alert latency) and architected both the LLM-powered \"AI Companion\" for automated SOAP notes and a DSP-based strip analysis system for ECG rhythm analysis." },
             { date: "May 2025 - Jul 2025", title: "Chief AI Officer (CAIO)", company: "Bayegan", desc: "Spearheaded the AI roadmap of a commodity trading company, aligning it with business objectives to enhance predictive analytics and risk management. Directed model training and optimization for automated trading systems; fostered collaboration with trading desks and software engineers to integrate AI into workflows." },
             { date: "Sep 2024 - Jan 2025", title: "VP of Artificial Intelligence", company: "Agada Tech", desc: "Spearheaded AI-driven customer segmentation models and oversaw real-time next-order prediction systems for high-volume e-commerce. Pioneered advanced AI methodologies to enhance customer loyalty strategies." },

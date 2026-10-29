@@ -210,7 +210,7 @@ export default function AcademicPage() {
 
           <Heading id="cv-industry">{a.industry}</Heading>
           <div className="cv-grid two align-start">
-            {groupByCompany(d.experienceGroups.flatMap((g) => g.items)).map((co) => (
+            {groupByCompany(d.experienceGroups.flatMap((g) => g.items).filter((x) => !x.academic)).map((co) => (
               <motion.article className="cv-card cv-xco" key={co.company} {...inView}>
                 <div className="cv-service-head">
                   <Logo company={co.company} />

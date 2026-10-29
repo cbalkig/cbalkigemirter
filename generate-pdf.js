@@ -564,7 +564,7 @@ const generateAcademicHTML = (lang) => {
 
   <h2>${r.experience}</h2>
   <div class="xp-rows">
-  ${rows(groupByCompany(d.experienceGroups.flatMap(g => g.items)), co => `
+  ${rows(groupByCompany(d.experienceGroups.flatMap(g => g.items).filter(x => !x.academic)), co => `
     <div class="card xco">
       <div class="xco-head">
         ${avatar(co.company)}
