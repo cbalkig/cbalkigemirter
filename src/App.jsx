@@ -66,7 +66,7 @@ function App() {
     services: [<Target size={32} color="#E11D48" />, <LineChart size={32} color="#E11D48" />, <Cpu size={32} color="#E11D48" />, <BrainCircuit size={32} color="#E11D48" />, <GraduationCap size={32} color="#E11D48" />]
   };
 
-  const emailAddress = "cbalkig@gmail.com";
+  const emailAddress = "cavide.balki@gmail.com";
   const linkedIn = "https://www.linkedin.com/in/cbalkig/";
 
   return (

@@ -254,7 +254,7 @@ const generateHTML = (lang) => {
         <h1>${NAME}</h1>
         <div class="role">${data.about.title}</div>
         <div class="contact">
-          <span><b>${data.contact.email}</b> <a href="mailto:cbalkig@gmail.com">cbalkig@gmail.com</a></span>
+          <span><b>${data.contact.email}</b> <a href="mailto:cavide.balki@gmail.com">cavide.balki@gmail.com</a></span>
           <span><b>${data.contact.phone}</b> +90 539 293 77 07</span>
           <span><b>Web</b> <a href="https://www.cavidebalki.com">www.cavidebalki.com</a></span>
           <span><b>LinkedIn</b> <a href="https://linkedin.com/in/cbalkig">linkedin.com/in/cbalkig</a></span>
@@ -391,7 +391,7 @@ const generateATSHTML = (lang) => {
 
   <h1>${NAME}</h1>
   <div class="headline">${data.about.title}</div>
-  <div class="contact">cbalkig@gmail.com | +90 539 293 77 07 | İstanbul, Türkiye</div>
+  <div class="contact">cavide.balki@gmail.com | +90 539 293 77 07 | İstanbul, Türkiye</div>
   <div class="contact"><a href="https://linkedin.com/in/cbalkig">linkedin.com/in/cbalkig</a> | <a href="https://www.cavidebalki.com">www.cavidebalki.com</a></div>
 
   <h2>${a.summary}</h2>
@@ -487,7 +487,7 @@ const generateAcademicHTML = (lang) => {
         <h1>${NAME}</h1>
         <div class="role">${a.role}</div>
         <div class="contact">
-          <span><b>${data.contact.email}</b> <a href="mailto:cbalkig@gmail.com">cbalkig@gmail.com</a></span>
+          <span><b>${data.contact.email}</b> <a href="mailto:cavide.balki@gmail.com">cavide.balki@gmail.com</a></span>
           <span><b>${data.contact.phone}</b> +90 539 293 77 07</span>
           <span><b>${r.location}</b> İstanbul, Türkiye</span>
           ${languagesEntry ? `<span><b>${r.languages}</b> ${languagesEntry.title}</span>` : ''}
