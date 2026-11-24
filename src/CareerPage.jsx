@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { t } from './locales';
 import Resume from './Resume';
 import SiteNav from './SiteNav';
+import SiteFooter from './SiteFooter';
 import './App.css';
 import './resume.css';
 
@@ -44,11 +45,7 @@ export default function CareerPage() {
         <Resume lang={lang} />
       </main>
 
-      <footer className="footer">
-        <div className="container" style={{ textAlign: 'center', padding: '2rem 0' }}>
-          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} C. Balkı GEMİRTER. {t[lang].footer.rights}</p>
-        </div>
-      </footer>
+      <SiteFooter lang={lang} />
     </>
   );
 }

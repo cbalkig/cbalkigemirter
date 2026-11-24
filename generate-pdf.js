@@ -597,7 +597,9 @@ const generateAcademicHTML = (lang) => {
 
 const render = async (browser, html, path, margin) => {
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+    // Non-breaking hyphens (U+2011, used on the site so "Ar-Ge" never wraps) are written as plain hyphens:
+    // ATS keyword matching and copy-paste treat U+2011 as a different character.
+    await page.setContent(html.replaceAll('\u2011', '-'), { waitUntil: 'networkidle0' });
     await page.evaluateHandle('document.fonts.ready');
     await page.pdf({ path, format: 'A4', printBackground: true, margin });
     await page.close();

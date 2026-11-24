@@ -158,6 +158,9 @@ export default function Resume({ lang }) {
           <a href={`${BASE}C_Balki_Gemirter_CV_${lang}.pdf`} download={`C_Balki_Gemirter_CV_${lang}.pdf`} className="btn btn-primary">
             <Download size={20} /> {r.downloadCV}
           </a>
+          <a href={`${BASE}C_Balki_Gemirter_CV_${lang}_ats.pdf`} download={`C_Balki_Gemirter_CV_${lang}_ats.pdf`} className="text-link">
+            {L.home.industry.ats}
+          </a>
         </motion.div>
       </div>
     </section>

@@ -180,13 +180,6 @@ a.cv-stat { text-decoration: none; color: inherit; cursor: pointer; }
 .academic-profile:hover { border-color: rgba(225, 29, 72, 0.35); color: var(--secondary-color); transform: translateY(-2px); }
 .academic-profile img { width: 16px; height: 16px; }
 
-/* subpage navigation: highlight the current page */
-.navbar .nav-links a.active { color: var(--secondary-color); }
-.navbar .nav-links a.active::after { width: 100%; }
-
-/* brand logos on the contact cards */
-.contact-logo { width: 34px; height: 34px; object-fit: contain; }
-
 /* abstract + cite actions on publication cards */
 .cv-pub-full { flex-wrap: nowrap; }
 .cv-pub-title { color: inherit; transition: var(--transition); }
@@ -215,5 +208,5 @@ a.cv-stat { text-decoration: none; color: inherit; cursor: pointer; }
 .cv-course { display: inline-flex; align-items: center; gap: 0.45rem; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 50px; padding: 0.35rem 0.85rem; font-size: 0.82rem; font-weight: 600; color: var(--text-main); }
 .cv-course .code { font-size: 0.72rem; font-weight: 700; color: var(--secondary-color); background: rgba(225, 29, 72, 0.08); border-radius: 50px; padding: 0.15rem 0.55rem; white-space: nowrap; }
 
-.academic-cta { display: flex; justify-content: center; margin-top: 3.5rem; }
+.academic-cta { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 3.5rem; }
 .academic-cta .btn { display: inline-flex; align-items: center; gap: 0.5rem; }

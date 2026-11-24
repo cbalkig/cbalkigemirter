@@ -1,5 +1,50 @@
 export const t = {
   tr: {
+    home: {
+      skip: "İçeriğe geç",
+      eyebrow: "CHIEF AI OFFICER · AR-GE LİDERİ · DOKTORA ADAYI",
+      status: "Akademik kadrolara ve üst düzey yapay zeka liderliği rollerine açık",
+      titlePre: "", titleEm: "Yapay Zeka", titlePost: " ile İnovasyon ve Dönüşüme Liderlik.",
+      ctaCareer: "Kariyer & Eğitim", ctaAcademic: "Akademik Profil", ctaContact: "İletişime geçin",
+      facts: { years: "yıl Ar-Ge ve teknoloji liderliği", pubs: "hakemli yayın", projects: "TÜBİTAK, Teknopark ve AB destekli Ar-Ge projesi", gpa: "doktora not ortalaması, bölüm birincisi" },
+      portraitRole: "CAIO · Doktora Adayı",
+      logos: "Kariyerimde görev aldığım kurumlar",
+      aboutEyebrow: "Hakkımda",
+      tracksEyebrow: "İki Yönlü Profil",
+      tracksTitle: "Akademi ve sektör, tek bir kariyerde.",
+      tracksText: "Araştırma derinliğini üst düzey yönetim tecrübesiyle birleştiriyorum. Her iki yol için ayrıntılı özgeçmişler aşağıda.",
+      industry: {
+        kicker: "Sektör Liderliği",
+        title: "C-level ve direktör düzeyinde yapay zeka liderliği",
+        text: "CEIBA Health, Bayegan, Agada Tech ve Vivoo'da CAIO ve Yapay Zeka Direktörü; Yapı Kredi Teknoloji ve TEB'de yapay zeka ve Ar-Ge yöneticisi.",
+        items: [
+          "19+ yıl kurumsal Ar-Ge ve teknoloji liderliği",
+          "17 mühendise kadar ekip yönetimi",
+          "9 Ar-Ge projesi: TÜBİTAK TEYDEB 1501 / 1832, Teknopark ve AB destekli",
+          "Sağlık, finans, emtia ticareti ve e-ticarette sıfırdan kurulan yapay zeka ürünleri"
+        ],
+        page: "Kariyer & Eğitim", cv: "CV indir (PDF)", ats: "ATS uyumlu sürüm (PDF)"
+      },
+      academicTrack: {
+        kicker: "Akademik Kariyer",
+        title: "Araştırma, yayın ve öğretim",
+        text: "Yeditepe Üniversitesi Bilgisayar Mühendisliği doktora adayı; doktora savunması Aralık 2026.",
+        items: [
+          "Doktora not ortalaması 4.00 / 4.00, bölüm birincisi",
+          "6 hakemli yayın; ikisi SCIE Q2 dergide (MDPI Applied Sciences)",
+          "Yapay Zeka, Makine Öğrenmesi ve Derin Öğrenme derslerinde öğretim asistanlığı; HSE University'de misafir dersler",
+          "Turkish Journal of Electrical Engineering & Computer Sciences ve European Journal of Radiology dergilerinde hakemlik"
+        ],
+        page: "Akademik Sayfa", cv: "Akademik CV indir (PDF)"
+      },
+      expertiseEyebrow: "Uzmanlık",
+      servicesEyebrow: "Danışmanlık",
+      servicesCta: { title: "Projenizi konuşalım", text: "İhtiyacınıza uygun çalışma modelini birlikte belirleyelim.", btn: "İletişime geçin" },
+      contactEyebrow: "İletişim",
+      contactSubtitle: "Akademik kadrolar, üst düzey yapay zeka liderliği rolleri, araştırma iş birlikleri ve danışmanlık için doğrudan ulaşabilirsiniz.",
+      footerTagline: "Chief AI Officer · Ar-Ge Lideri · Bilgisayar Mühendisliği Doktora Adayı",
+      menuOpen: "Menüyü aç", menuClose: "Menüyü kapat", navLabel: "Ana menü", footerNav: "Alt menü"
+    },
     nav: { home: "ANA SAYFA", about: "HAKKIMDA", services: "HİZMETLERİM", resume: "KARİYER & EĞİTİM", academic: "AKADEMİK", contact: "İLETİŞİM" },
     hero: { title: "Yapay Zeka ile İnovasyon ve Dönüşüme Liderlik.", subtitle: "CAIO, Ar-Ge lideri ve Bilgisayar Mühendisliği doktora adayı. 19 yılı aşkın tecrübeyle ileri düzey yapay zeka araştırmalarını ölçülebilir iş değerine dönüştürüyorum.", tags: ["Yapay Zeka Stratejisi", "LLM & NLP", "Sağlık Teknolojileri", "FinTech", "TÜBİTAK Ar-Ge"], btnAbout: "HAKKIMDA", btnServices: "HİZMETLERİM", btnResume: "KARİYER & EĞİTİM", btnContact: "İLETİŞİM" },
     about: {
@@ -145,6 +190,51 @@ export const t = {
     }
   },
   en: {
+    home: {
+      skip: "Skip to content",
+      eyebrow: "Chief AI Officer · R&D Leader · Ph.D. Candidate",
+      status: "Open to faculty positions and senior AI leadership roles",
+      titlePre: "Leading Innovation and Transformation through ", titleEm: "AI", titlePost: ".",
+      ctaCareer: "Resume & Education", ctaAcademic: "Academic Profile", ctaContact: "Get in touch",
+      facts: { years: "years of R&D and technology leadership", pubs: "peer-reviewed publications", projects: "R&D projects backed by TÜBİTAK, technoparks and the EU", gpa: "Ph.D. GPA, ranked 1st" },
+      portraitRole: "CAIO · Ph.D. Candidate",
+      logos: "Organizations I have worked with",
+      aboutEyebrow: "About",
+      tracksEyebrow: "A Dual Profile",
+      tracksTitle: "Academia and industry in one career.",
+      tracksText: "I combine research depth with senior management experience. Detailed CVs for both paths are below.",
+      industry: {
+        kicker: "Industry Leadership",
+        title: "C-level and director-level AI leadership",
+        text: "CAIO and Director of AI at CEIBA Health, Bayegan, Agada Tech and Vivoo; AI and R&D manager at Yapı Kredi Teknoloji and TEB.",
+        items: [
+          "19+ years of enterprise R&D and technology leadership",
+          "Teams of up to 17 engineers",
+          "9 R&D projects backed by TÜBİTAK TEYDEB 1501 / 1832, technoparks and the EU",
+          "0-to-1 AI products in healthcare, finance, commodity trading and e-commerce"
+        ],
+        page: "Resume & Education", cv: "Download CV (PDF)", ats: "ATS-friendly version (PDF)"
+      },
+      academicTrack: {
+        kicker: "Academic Career",
+        title: "Research, publications and teaching",
+        text: "Ph.D. candidate in Computer Engineering at Yeditepe University; thesis defense in December 2026.",
+        items: [
+          "Ph.D. GPA 4.00 / 4.00, ranked 1st",
+          "6 peer-reviewed publications, two in SCIE Q2 journals (MDPI Applied Sciences)",
+          "Teaching assistant for Artificial Intelligence, Machine Learning and Deep Learning; guest lecturer at HSE University",
+          "Reviewer for the Turkish Journal of Electrical Engineering & Computer Sciences and the European Journal of Radiology"
+        ],
+        page: "Academic Page", cv: "Download Academic CV (PDF)"
+      },
+      expertiseEyebrow: "Expertise",
+      servicesEyebrow: "Consulting",
+      servicesCta: { title: "Let's talk about your project", text: "We can define the engagement model that fits your needs together.", btn: "Get in touch" },
+      contactEyebrow: "Contact",
+      contactSubtitle: "Reach out directly about faculty positions, senior AI leadership roles, research collaborations or consulting.",
+      footerTagline: "Chief AI Officer · R&D Leader · Ph.D. Candidate in Computer Engineering",
+      menuOpen: "Open menu", menuClose: "Close menu", navLabel: "Main menu", footerNav: "Footer menu"
+    },
     nav: { home: "HOME", about: "ABOUT", services: "SERVICES", resume: "RESUME", academic: "ACADEMIC", contact: "CONTACT" },
     hero: { title: "Leading Innovation and Transformation through AI.", subtitle: "Chief AI Officer (CAIO), R&D leader and Ph.D. candidate in Computer Engineering, turning advanced AI research into measurable business value with 19+ years of experience.", tags: ["AI Strategy", "LLM & NLP", "HealthTech", "FinTech", "TÜBİTAK R&D"], btnAbout: "ABOUT ME", btnServices: "SERVICES", btnResume: "RESUME", btnContact: "CONTACT" },
     about: {

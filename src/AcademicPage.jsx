@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Copy, Download, ExternalLink, FileText, GraduationCap } from 'lucide-react';
 import SiteNav from './SiteNav';
+import SiteFooter from './SiteFooter';
 import { t } from './locales';
 import { PUBLICATIONS, ACADEMIC_PROFILES, parseEdu, groupByCompany, tenure } from './cvData';
 import { Logo, Heading, EduCard, inView } from './cvComponents';
@@ -234,11 +235,7 @@ export default function AcademicPage() {
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="container" style={{ textAlign: 'center', padding: '2rem 0' }}>
-          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} C. Balkı GEMİRTER. {L.footer.rights}</p>
-        </div>
-      </footer>
+      <SiteFooter lang={lang} />
     </>
   );
 }

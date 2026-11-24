@@ -1,23 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { BrainCircuit, Activity, LineChart, Lightbulb, Target, Cpu, MessageSquare, Radio, GraduationCap } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import {
+  BrainCircuit, Activity, LineChart, Lightbulb, Target, Cpu, MessageSquare, Radio, GraduationCap,
+  ArrowRight, Check, Download, Briefcase, FlaskConical, Sparkles,
+} from 'lucide-react';
+import { motion, MotionConfig } from 'framer-motion';
 import { t } from './locales';
+import { PUBLICATIONS, groupByCompany } from './cvData';
+import { Logo } from './cvComponents';
 import SiteNav from './SiteNav';
+import SiteFooter from './SiteFooter';
 import './App.css';
 import './resume.css';
 
-const fadeUpVariant = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-};
+const BASE = import.meta.env.BASE_URL;
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
+const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
+const inView = { initial: 'hidden', whileInView: 'visible', viewport: { once: true, margin: '-80px' } };
+
+const practiceIcons = [BrainCircuit, Activity, LineChart, Lightbulb, MessageSquare, Radio];
+const serviceIcons = [Target, LineChart, Cpu, BrainCircuit, GraduationCap];
+const featureIcons = [FlaskConical, Sparkles, Briefcase];
+
+function SectionHeading({ eyebrow, title, text, light = false }) {
+  return (
+    <motion.div className={`section-heading center ${light ? 'light' : ''}`} {...inView} variants={fadeUp}>
+      <span className="eyebrow">{eyebrow}</span>
+      <h2>{title}</h2>
+      {text && <p>{text}</p>}
+    </motion.div>
+  );
+}
+
+function Track({ icon: Icon, data, dark = false, children }) {
+  return (
+    <motion.article className={`track ${dark ? 'dark' : ''}`} variants={fadeUp}>
+      <div className="track-icon"><Icon size={28} strokeWidth={1.6} /></div>
+      <span className="eyebrow">{data.kicker}</span>
+      <h3>{data.title}</h3>
+      <p>{data.text}</p>
+      <ul className="track-list">
+        {data.items.map((item) => <li key={item}><Check size={18} strokeWidth={2.5} /><span>{item}</span></li>)}
+      </ul>
+      <div className="track-actions">{children}</div>
+    </motion.article>
+  );
+}
 
 function App() {
   // Scrollspy: highlight the section currently in view in the shared navbar.
@@ -35,6 +66,18 @@ function App() {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Arriving from a subpage via /#services or /#contact: the browser looks for the anchor
+  // before React has rendered it, so it stays at the top. Scroll to it once rendered, and
+  // again after images load (the hero portrait can shift the section offsets).
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    const scrollToHash = () => document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    requestAnimationFrame(scrollToHash);
+    if (document.readyState !== 'complete') window.addEventListener('load', scrollToHash, { once: true });
+    return () => window.removeEventListener('load', scrollToHash);
   }, []);
 
   const [lang, setLang] = useState(() => {
@@ -61,122 +104,190 @@ function App() {
     window.history.pushState({}, '', url);
   };
 
-  const icons = {
-    practiceAreas: [<BrainCircuit size={32} />, <Activity size={32} />, <LineChart size={32} />, <Lightbulb size={32} />, <MessageSquare size={32} />, <Radio size={32} />],
-    services: [<Target size={32} color="#E11D48" />, <LineChart size={32} color="#E11D48" />, <Cpu size={32} color="#E11D48" />, <BrainCircuit size={32} color="#E11D48" />, <GraduationCap size={32} color="#E11D48" />]
-  };
+  const L = t[lang];
+  const h = L.home;
+  const d = L.data;
+  const langParam = lang === 'tr' ? '?lang=tr' : '';
+  const careerUrl = `${BASE}career.html${langParam}`;
+  const academicUrl = `${BASE}academic.html${langParam}`;
+  const emailAddress = 'cavide.balki@gmail.com';
+  const linkedIn = 'https://www.linkedin.com/in/cbalkig/';
 
-  const emailAddress = "cavide.balki@gmail.com";
-  const linkedIn = "https://www.linkedin.com/in/cbalkig/";
+  // Organizations from the career history, industry first; "TEB - Türk Ekonomi Bankası" is shown as "TEB".
+  const orgs = groupByCompany(d.experienceGroups.flatMap((g) => g.items))
+    .map((c) => c.company)
+    .filter((c, i, all) => all.indexOf(c) === i)
+    .sort((a, b) => /yeditepe/i.test(a) - /yeditepe/i.test(b));
+  const gpa = (d.education[0].desc.match(/\d\.\d\d/) || [''])[0];
+  const facts = [
+    [L.about.expYears, h.facts.years],
+    [PUBLICATIONS.length, h.facts.pubs],
+    [d.projects.length, h.facts.projects],
+    [gpa, h.facts.gpa],
+  ];
+  const features = [1, 2, 3].map((n) => ({ title: L.about[`f${n}Title`], desc: L.about[`f${n}Desc`], Icon: featureIcons[n - 1] }));
+  const contacts = [
+    { logo: 'linkedin.svg', title: L.contact.linkedin, desc: L.contact.linkedinDesc, href: linkedIn, label: L.contact.linkedinBtn, external: true },
+    { logo: 'whatsapp.svg', title: L.contact.phone, desc: `${L.contact.phoneDesc} +90 539 293 77 07`, href: 'https://wa.me/905392937707', label: L.contact.whatsappBtn, external: true },
+    { logo: 'gmail.svg', title: L.contact.email, desc: emailAddress, href: `mailto:${emailAddress}`, label: L.contact.emailBtn, external: false },
+  ];
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
+      <a href="#about" className="skip-link">{h.skip}</a>
       <SiteNav lang={lang} active={activeSection} onToggleLang={toggleLanguage} />
 
-      <section id="home" className="hero">
-        <div className="container hero-inner">
-          <motion.div className="hero-content" initial="hidden" animate="visible" variants={staggerContainer}>
-            <motion.h1 variants={fadeUpVariant}>
-              {t[lang].hero.title}
-            </motion.h1>
-            <motion.p variants={fadeUpVariant}>{t[lang].hero.subtitle}</motion.p>
-            <motion.div className="hero-tags" variants={fadeUpVariant}>
-              {t[lang].hero.tags.map((tag) => <span className="hero-tag" key={tag}>{tag}</span>)}
-            </motion.div>
-
-            <motion.div className="hero-btns" variants={fadeUpVariant}>
-              <a href={`${import.meta.env.BASE_URL}career.html${lang === 'tr' ? '?lang=tr' : ''}`} className="btn btn-primary">{t[lang].hero.btnResume}</a>
-              <a href={`${import.meta.env.BASE_URL}academic.html${lang === 'tr' ? '?lang=tr' : ''}`} className="btn btn-outline">{t[lang].nav.academic}</a>
-              <a href="#services" className="btn btn-outline">{t[lang].hero.btnServices}</a>
-              <a href="#contact" className="btn btn-outline">{t[lang].hero.btnContact}</a>
-            </motion.div>
-          </motion.div>
-
-          <motion.div className="hero-portrait" initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }}>
-            <img src={`${import.meta.env.BASE_URL}images/portrait.jpg`} alt="C. Balkı GEMİRTER" />
-            <div className="hero-badge">
-              <div className="years">{t[lang].about.expYears}</div>
-              <div className="text" style={{ whiteSpace: 'pre-line' }}>{t[lang].about.expText}</div>
-            </div>
-            <div className="hero-badge phd">
-              <div className="years">{t[lang].about.phdLabel}</div>
-              <div className="text" style={{ whiteSpace: 'pre-line' }}>{t[lang].about.phdText}</div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="expertise" className="section" style={{ backgroundColor: '#F1F5F9' }}>
-        <div className="container">
-          <motion.h3 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant} style={{ fontSize: '2rem', marginBottom: '3rem', textAlign: 'center', color: 'var(--primary-color)' }}>
-            {t[lang].expertise.title}
-          </motion.h3>
-          <motion.div className="expertise-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
-            {t[lang].data.practiceAreas.map((area, index) => (
-              <motion.div className="expertise-card" key={index} variants={fadeUpVariant}>
-                <div className="expertise-icon">{icons.practiceAreas[index]}</div>
-                <h3>{area.title}</h3>
-                <p>{area.desc}</p>
+      <main>
+        <section id="home" className="hero">
+          <div className="hero-pattern" aria-hidden="true" />
+          <div className="container hero-grid">
+            <motion.div className="hero-content" initial="hidden" animate="visible" variants={stagger}>
+              <motion.span className="eyebrow" variants={fadeUp}>{h.eyebrow}</motion.span>
+              <motion.h1 variants={fadeUp}>{h.titlePre}<em>{h.titleEm}</em>{h.titlePost}</motion.h1>
+              <motion.p variants={fadeUp}>{L.hero.subtitle}</motion.p>
+              <motion.div className="hero-status" variants={fadeUp}>{h.status}</motion.div>
+              <motion.div className="hero-actions" variants={fadeUp}>
+                <a href={careerUrl} className="btn btn-primary">{h.ctaCareer} <ArrowRight className="arrow" size={18} /></a>
+                <a href={academicUrl} className="btn btn-ghost">{h.ctaAcademic}</a>
+                <a href="#contact" className="text-link">{h.ctaContact} <ArrowRight size={16} /></a>
               </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="services" className="section services" style={{ backgroundColor: '#0B0F19', color: '#F8FAFC' }}>
-        <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}>
-            <h2 className="section-title" style={{ color: '#F8FAFC' }}>{t[lang].services.title}</h2>
-            <p className="section-subtitle" style={{ color: '#CBD5E1' }}>{t[lang].services.subtitle}</p>
-          </motion.div>
-
-          <motion.div className="expertise-grid" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}>
-            {t[lang].data.services.map((svc, index) => (
-              <motion.div className="expertise-card" key={index} style={{ backgroundColor: 'rgba(255, 255, 255, 0.05)', borderColor: 'rgba(255, 255, 255, 0.1)' }} variants={fadeUpVariant}>
-                <div className="expertise-icon">{icons.services[index]}</div>
-                <h3 style={{ color: '#F8FAFC' }}>{svc.title}</h3>
-                <p style={{ color: '#CBD5E1' }}>{svc.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="contact" className="section contact">
-        <div className="container">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUpVariant}>
-            <h2 className="section-title">{t[lang].contact.title}</h2>
-            <p className="section-subtitle">{t[lang].contact.subtitle}</p>
-          </motion.div>
-
-          <div className="contact-container">
-            <motion.div className="contact-info" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
-              
-              {[
-                { logo: 'linkedin.svg', title: t[lang].contact.linkedin, desc: t[lang].contact.linkedinDesc, href: linkedIn, label: t[lang].contact.linkedinBtn, external: true },
-                { logo: 'whatsapp.svg', title: t[lang].contact.phone, desc: `${t[lang].contact.phoneDesc} +90 539 293 77 07`, href: 'https://wa.me/905392937707', label: t[lang].contact.whatsappBtn, external: true },
-                { logo: 'gmail.svg', title: t[lang].contact.email, desc: t[lang].contact.emailDesc, href: `mailto:${emailAddress}`, label: t[lang].contact.emailBtn, external: false },
-              ].map(({ logo, title, desc, href, label, external }) => (
-                <div className="contact-item contact-card" key={title}>
-                  <img className="contact-icon contact-logo" src={`${import.meta.env.BASE_URL}images/profiles/${logo}`} alt="" />
-                  <div className="contact-card-body">
-                    <h4>{title}</h4>
-                    <p>{desc}</p>
-                    <a href={href} className="btn btn-outline contact-btn" {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{label}</a>
+              <motion.dl className="hero-facts" variants={fadeUp}>
+                {facts.map(([num, label]) => (
+                  <div key={label}>
+                    <dt>{num}</dt>
+                    <dd>{label}</dd>
                   </div>
-                </div>
+                ))}
+              </motion.dl>
+            </motion.div>
+
+            <motion.div
+              className="hero-portrait"
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            >
+              <div className="portrait-frame">
+                <img src={`${BASE}images/portrait-hero.jpg`} alt="C. Balkı GEMİRTER" width="900" height="900" fetchPriority="high" />
+              </div>
+              <div className="portrait-caption">
+                <strong>C. Balkı GEMİRTER</strong>
+                <span>{h.portraitRole}</span>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="orgs" aria-label={h.logos}>
+          <div className="container orgs-inner">
+            <span className="orgs-label">{h.logos}</span>
+            <ul className="orgs-list">
+              {orgs.map((company) => (
+                <li className="org" key={company}><Logo company={company} />{company.split(' - ')[0]}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section id="about" className="section about">
+          <div className="container about-grid">
+            <motion.div className="about-text" {...inView} variants={fadeUp}>
+              <span className="eyebrow">{h.aboutEyebrow}</span>
+              <h2>{L.about.title}</h2>
+              <p className="lead">{L.about.p1}</p>
+              <p>{L.about.p2}</p>
+            </motion.div>
+            <motion.div className="about-features" {...inView} variants={stagger}>
+              {features.map(({ title, desc, Icon }) => (
+                <motion.div className="about-feature" key={title} variants={fadeUp}>
+                  <div className="feature-icon"><Icon size={22} strokeWidth={1.7} /></div>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{desc}</p>
+                  </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <footer className="footer">
-        <div className="container footer-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', padding: '2rem 0' }}>
-          <p style={{ margin: 0 }}>&copy; {new Date().getFullYear()} C. Balkı GEMİRTER. {t[lang].footer.rights}</p>
-        </div>
-      </footer>
-    </>
+        <section id="profile" className="section tracks">
+          <div className="container">
+            <SectionHeading eyebrow={h.tracksEyebrow} title={h.tracksTitle} text={h.tracksText} />
+            <motion.div className="tracks-grid" {...inView} variants={stagger}>
+              <Track icon={Briefcase} data={h.industry} dark>
+                <a href={careerUrl} className="btn btn-primary btn-sm">{h.industry.page} <ArrowRight className="arrow" size={16} /></a>
+                <a href={`${BASE}C_Balki_Gemirter_CV_${lang}.pdf`} download className="btn btn-ghost btn-sm"><Download size={16} /> {h.industry.cv}</a>
+                <a href={`${BASE}C_Balki_Gemirter_CV_${lang}_ats.pdf`} download className="text-link">{h.industry.ats}</a>
+              </Track>
+              <Track icon={GraduationCap} data={h.academicTrack}>
+                <a href={academicUrl} className="btn btn-dark btn-sm">{h.academicTrack.page} <ArrowRight className="arrow" size={16} /></a>
+                <a href={`${BASE}C_Balki_Gemirter_Academic_CV_${lang}.pdf`} download className="btn btn-light btn-sm"><Download size={16} /> {h.academicTrack.cv}</a>
+              </Track>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="expertise" className="section expertise">
+          <div className="container">
+            <SectionHeading eyebrow={h.expertiseEyebrow} title={L.expertise.title} />
+            <motion.div className="expertise-grid" {...inView} variants={stagger}>
+              {d.practiceAreas.map((area, i) => {
+                const Icon = practiceIcons[i];
+                return (
+                  <motion.article className="expertise-card" key={area.title} variants={fadeUp}>
+                    <div className="expertise-icon"><Icon size={26} strokeWidth={1.6} /></div>
+                    <h3>{area.title}</h3>
+                    <p>{area.desc}</p>
+                  </motion.article>
+                );
+              })}
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="services" className="section services">
+          <div className="container">
+            <SectionHeading light eyebrow={h.servicesEyebrow} title={L.services.title} text={L.services.subtitle} />
+            <motion.div className="services-grid" {...inView} variants={stagger}>
+              {d.services.map((svc, i) => {
+                const Icon = serviceIcons[i];
+                return (
+                  <motion.article className="service-card" key={svc.title} variants={fadeUp}>
+                    <Icon size={30} strokeWidth={1.6} />
+                    <h3>{svc.title}</h3>
+                    <p>{svc.desc}</p>
+                  </motion.article>
+                );
+              })}
+              <motion.article className="service-card cta" variants={fadeUp}>
+                <h3>{h.servicesCta.title}</h3>
+                <p>{h.servicesCta.text}</p>
+                <a href="#contact" className="btn btn-light btn-sm">{h.servicesCta.btn} <ArrowRight className="arrow" size={16} /></a>
+              </motion.article>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="contact" className="section contact">
+          <div className="container">
+            <SectionHeading eyebrow={h.contactEyebrow} title={L.contact.title} text={h.contactSubtitle} />
+            <motion.div className="contact-grid" {...inView} variants={stagger}>
+              {contacts.map(({ logo, title, desc, href, label, external }) => (
+                <motion.div className="contact-card" key={title} variants={fadeUp}>
+                  <img className="contact-logo" src={`${BASE}images/profiles/${logo}`} alt="" width="38" height="38" />
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                  <a href={href} className="btn btn-outline btn-sm" {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{label}</a>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter lang={lang} />
+    </MotionConfig>
   );
 }
 
