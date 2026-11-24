@@ -43,9 +43,9 @@ export default function SiteNav({ lang, active, onToggleLang }) {
         <a href={`${BASE}${langParam}`} className="brand" onClick={close}>C. Balkı <span>GEMİRTER</span></a>
         <nav className={`nav-links ${open ? 'open' : ''}`} aria-label={L.home.navLabel}>
           {links.map((l) => (
-            <a href={l.href} className={l.key === active ? 'active' : ''} aria-current={l.key === active ? 'page' : undefined} key={l.key} onClick={close}>{l.label}</a>
+            <a href={l.href} className={l.key === active ? 'active' : ''} aria-current={l.key === active ? 'page' : undefined} key={l.key} onClick={close}>{l.label.toLocaleLowerCase(lang)}</a>
           ))}
-          <a href={onHome ? '#contact' : `${BASE}${langParam}#contact`} className="nav-cta" onClick={close}>{L.nav.contact}</a>
+          <a href={onHome ? '#contact' : `${BASE}${langParam}#contact`} className="nav-cta" onClick={close}>{L.nav.contact.toLocaleLowerCase(lang)}</a>
           <button type="button" className="lang-toggle" onClick={onToggleLang} aria-label={lang === 'tr' ? 'Switch to English' : 'Türkçeye geç'}>
             <Globe size={16} /> {lang === 'tr' ? 'EN' : 'TR'}
           </button>

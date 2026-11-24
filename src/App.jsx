@@ -38,7 +38,7 @@ function SectionHeading({ eyebrow, title, text, light = false }) {
 function Track({ icon: Icon, data, dark = false, children }) {
   return (
     <motion.article className={`track ${dark ? 'dark' : ''}`} variants={fadeUp}>
-      <div className="track-icon"><Icon size={28} strokeWidth={1.6} /></div>
+      <div className="track-icon"><Icon size={34} strokeWidth={1.25} /></div>
       <span className="eyebrow">{data.kicker}</span>
       <h3>{data.title}</h3>
       <p>{data.text}</p>
@@ -70,13 +70,15 @@ function App() {
 
   // Arriving from a subpage via /#services or /#contact: the browser looks for the anchor
   // before React has rendered it, so it stays at the top. Scroll to it once rendered, and
-  // again after images load (the hero portrait can shift the section offsets).
+  // again after images and fonts load (both shift the section offsets).
   useEffect(() => {
     const id = decodeURIComponent(window.location.hash.slice(1));
     if (!id) return;
     const scrollToHash = () => document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
     requestAnimationFrame(scrollToHash);
     if (document.readyState !== 'complete') window.addEventListener('load', scrollToHash, { once: true });
+    // Web fonts arrive after first paint and change text heights above the target.
+    document.fonts?.ready.then(scrollToHash);
     return () => window.removeEventListener('load', scrollToHash);
   }, []);
 
@@ -147,7 +149,7 @@ function App() {
               <motion.p variants={fadeUp}>{L.hero.subtitle}</motion.p>
               <motion.div className="hero-status" variants={fadeUp}>{h.status}</motion.div>
               <motion.div className="hero-actions" variants={fadeUp}>
-                <a href={careerUrl} className="btn btn-primary">{h.ctaCareer} <ArrowRight className="arrow" size={18} /></a>
+                <a href={careerUrl} className="btn btn-white">{h.ctaCareer} <ArrowRight className="arrow" size={18} /></a>
                 <a href={academicUrl} className="btn btn-ghost">{h.ctaAcademic}</a>
                 <a href="#contact" className="text-link">{h.ctaContact} <ArrowRight size={16} /></a>
               </motion.div>
@@ -200,7 +202,7 @@ function App() {
             <motion.div className="about-features" {...inView} variants={stagger}>
               {features.map(({ title, desc, Icon }) => (
                 <motion.div className="about-feature" key={title} variants={fadeUp}>
-                  <div className="feature-icon"><Icon size={22} strokeWidth={1.7} /></div>
+                  <div className="feature-icon"><Icon size={26} strokeWidth={1.4} /></div>
                   <div>
                     <h3>{title}</h3>
                     <p>{desc}</p>
@@ -231,7 +233,7 @@ function App() {
             <SectionHeading eyebrow={h.tracksEyebrow} title={h.tracksTitle} text={h.tracksText} />
             <motion.div className="tracks-grid" {...inView} variants={stagger}>
               <Track icon={Briefcase} data={h.industry} dark>
-                <a href={careerUrl} className="btn btn-primary btn-sm">{h.industry.page} <ArrowRight className="arrow" size={16} /></a>
+                <a href={careerUrl} className="btn btn-white btn-sm">{h.industry.page} <ArrowRight className="arrow" size={16} /></a>
                 <a href={`${BASE}C_Balki_Gemirter_CV_${lang}.pdf`} download className="btn btn-ghost btn-sm"><Download size={16} /> {h.industry.cv}</a>
                 <a href={`${BASE}C_Balki_Gemirter_CV_${lang}_ats.pdf`} download className="text-link">{h.industry.ats}</a>
               </Track>
@@ -251,7 +253,7 @@ function App() {
                 const Icon = practiceIcons[i];
                 return (
                   <motion.article className="expertise-card" key={area.title} variants={fadeUp}>
-                    <div className="expertise-icon"><Icon size={26} strokeWidth={1.6} /></div>
+                    <div className="expertise-icon"><Icon size={30} strokeWidth={1.25} /></div>
                     <h3>{area.title}</h3>
                     <p>{area.desc}</p>
                   </motion.article>
@@ -269,7 +271,7 @@ function App() {
                 const Icon = serviceIcons[i];
                 return (
                   <motion.article className="service-card" key={svc.title} variants={fadeUp}>
-                    <Icon size={30} strokeWidth={1.6} />
+                    <Icon size={30} strokeWidth={1.25} />
                     <h3>{svc.title}</h3>
                     <p>{svc.desc}</p>
                   </motion.article>
@@ -278,7 +280,7 @@ function App() {
               <motion.article className="service-card cta" variants={fadeUp}>
                 <h3>{h.servicesCta.title}</h3>
                 <p>{h.servicesCta.text}</p>
-                <a href="#contact" className="btn btn-light btn-sm">{h.servicesCta.btn} <ArrowRight className="arrow" size={16} /></a>
+                <a href="#contact" className="btn btn-primary btn-sm">{h.servicesCta.btn} <ArrowRight className="arrow" size={16} /></a>
               </motion.article>
             </motion.div>
           </div>
