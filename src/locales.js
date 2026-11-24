@@ -10,6 +10,16 @@ export const t = {
       portraitRole: "CAIO · Doktora Adayı",
       logos: "Kariyerimde görev aldığım kurumlar",
       aboutEyebrow: "Hakkımda",
+      resultsEyebrow: "Öne Çıkan Sonuçlar",
+      resultsTitle: "Ölçülebilir etki.",
+      results: [
+        { num: "17", text: "kişilik mühendis ekibinin sıfır ayrılma ile yönetimi", org: "Yapı Kredi Teknoloji" },
+        { num: "7 yıl", text: "TEB Ar-Ge departmanının yönetimi; NEURON, ConnecTEB ve Dragon dahil bankanın Ar-Ge projeleri bu ekipten çıktı", org: "TEB" },
+        { num: ">%90", text: "doğrulukla gerçek zamanlı düşme riski tespiti; 10 saniyenin altında uyarı", org: "CEIBA Health" },
+        { num: "7", text: "TÜBİTAK TEYDEB destekli Ar-Ge projesi, dört farklı kurumda", org: "TÜBİTAK" },
+        { num: "2", text: "SCIE Q2 dergi makalesi (2026): tıbbi teşhis ve alan uyarlama üzerine", org: "Yeditepe Üniversitesi" },
+        { num: "2×", text: "Leaders of Tomorrow ödülü (2023 – 2024)", org: "Global Talent Award" }
+      ],
       tracksEyebrow: "İki Yönlü Profil",
       tracksTitle: "Akademi ve sektör, tek bir kariyerde.",
       tracksText: "Araştırma derinliğini üst düzey yönetim tecrübesiyle birleştiriyorum. Her iki yol için ayrıntılı özgeçmişler aşağıda.",
@@ -200,6 +210,16 @@ export const t = {
       portraitRole: "CAIO · Ph.D. Candidate",
       logos: "Organizations I have worked with",
       aboutEyebrow: "About",
+      resultsEyebrow: "Selected Results",
+      resultsTitle: "Measurable impact.",
+      results: [
+        { num: "17", text: "engineers led with 0% attrition", org: "Yapı Kredi Teknoloji" },
+        { num: "7 yrs", text: "leading TEB's R&D department, the team behind the bank's R&D projects including NEURON, ConnecTEB and Dragon", org: "TEB" },
+        { num: ">90%", text: "accuracy in real-time fall risk detection, with alerts in under 10 seconds", org: "CEIBA Health" },
+        { num: "7", text: "TÜBİTAK TEYDEB-funded R&D projects across four organizations", org: "TÜBİTAK" },
+        { num: "2", text: "SCIE Q2 journal articles (2026) on medical diagnosis and domain adaptation", org: "Yeditepe University" },
+        { num: "2×", text: "Leaders of Tomorrow award winner (2023 – 2024)", org: "Global Talent Award" }
+      ],
       tracksEyebrow: "A Dual Profile",
       tracksTitle: "Academia and industry in one career.",
       tracksText: "I combine research depth with senior management experience. Detailed CVs for both paths are below.",

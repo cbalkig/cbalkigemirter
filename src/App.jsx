@@ -211,6 +211,21 @@ function App() {
           </div>
         </section>
 
+        <section id="results" className="section results">
+          <div className="container">
+            <SectionHeading eyebrow={h.resultsEyebrow} title={h.resultsTitle} />
+            <motion.div className="results-grid" {...inView} variants={stagger}>
+              {h.results.map((r) => (
+                <motion.article className="result-card" key={r.text} variants={fadeUp}>
+                  <div className="result-num">{r.num}</div>
+                  <p>{r.text}</p>
+                  <div className="result-org"><Logo company={r.org} />{r.org}</div>
+                </motion.article>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
         <section id="profile" className="section tracks">
           <div className="container">
             <SectionHeading eyebrow={h.tracksEyebrow} title={h.tracksTitle} text={h.tracksText} />
