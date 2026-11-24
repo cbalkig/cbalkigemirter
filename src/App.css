@@ -174,7 +174,7 @@
   border-radius: 14px;
   box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.75);
 }
-.portrait-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 58% 0; }
+.portrait-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
 .hero-portrait::after {
   content: '';
   position: absolute;
