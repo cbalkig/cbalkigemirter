@@ -16,6 +16,9 @@
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 rgba(15, 23, 42, 0.08);
 }
+/* backdrop-filter makes the bar the containing block of its fixed children, which would trap the
+   full-screen mobile menu inside the 64px bar. Drop the effect while the menu is open. */
+.navbar.menu-open, .navbar.scrolled.menu-open { background-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: none; }
 .navbar-container { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; width: 100%; }
 
 .brand {
@@ -336,7 +339,7 @@
 .footer { padding: 4rem 0 2.25rem; background-color: #070A12; color: #94A3B8; text-align: left; }
 .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem 2rem; padding-bottom: 2.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
 .footer-brand { display: flex; flex-direction: column; gap: 0.4rem; }
-.footer-brand .brand { color: #FFFFFF; font-size: 1.5rem; }
+.footer-brand .brand { color: #FFFFFF; font-size: 1.5rem; z-index: auto; } /* must not sit above the open mobile menu */
 .footer-brand span.tagline { font-size: 0.82rem; }
 .footer-nav { display: flex; flex-wrap: wrap; gap: 0.75rem 2rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
 .footer-nav a:hover { color: #FFFFFF; }
