@@ -35,7 +35,7 @@ export default function CareerPage() {
       <header className="subpage-hero">
         <div className="container">
           <div className="cv-intro">
-            <h2 className="section-title">{t[lang].resume.title}</h2>
+            <h1 className="section-title">{t[lang].resume.title}</h1>
             <p className="section-subtitle">{t[lang].resume.subtitle}</p>
           </div>
         </div>

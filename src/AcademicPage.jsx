@@ -88,7 +88,7 @@ export default function AcademicPage() {
       <header className="subpage-hero">
         <div className="container">
           <motion.div className="cv-intro" initial="hidden" animate="visible" variants={inView.variants}>
-            <h2 className="section-title">{a.title}</h2>
+            <h1 className="section-title">{a.title}</h1>
             <p className="section-subtitle">{a.role}</p>
             {profiles.length > 0 && (
               <div className="academic-profiles">

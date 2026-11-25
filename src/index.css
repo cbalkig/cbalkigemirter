@@ -209,3 +209,8 @@ h3, h4, h5, h6 {
 }
 
 img { max-width: 100%; }
+
+/* On very narrow phones a long button label wraps instead of spilling past the screen edge */
+@media (max-width: 400px) {
+  .btn { max-width: 100%; padding-left: 1.4rem; padding-right: 1.4rem; white-space: normal; text-align: center; letter-spacing: 0.08em; }
+}
